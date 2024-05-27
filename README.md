@@ -23,3 +23,7 @@
 ## Generating splash screen assets
 
 `dart run flutter_native_splash:create`
+
+## Generating launcher screen assets
+
+`flutter pub run flutter_launcher_icons`
