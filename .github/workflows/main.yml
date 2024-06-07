@@ -8,7 +8,46 @@ on:
     branches: [ main ]
 
 jobs:
-  ios:
+  android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          
+      - name: Create upload-keystore.jks and key.properties
+        run: |
+          echo -n "${{ secrets.UPLOAD_KEYSTORE_JKS_BASE64 }}" | base64 --decode -o android/upload-keystore.jks
+          echo "storePassword=${{ secrets.STORE_PASSWORD }}" >> android/key.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+          echo "keyAlias=upload" >> android/key.properties
+          echo "storeFile=upload-keystore.jks" >> android/key.properties
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Fetch Flutter dependencies
+        run: flutter pub get
+
+      - name: Build
+        run: flutter build appbundle
+
+      - if: startsWith(github.ref, 'refs/tags/v')
+        name: Upload
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+          packageName: uk.co.xio.ximu3_app
+          releaseFiles: build/app/outputs/bundle/release/app-release.aab
+
+  ios:  
     runs-on: macos-latest
 
     steps:
