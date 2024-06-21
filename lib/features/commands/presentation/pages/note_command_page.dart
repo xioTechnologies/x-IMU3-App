@@ -37,11 +37,7 @@ class _NoteCommandPageState extends State<NoteCommandPage> {
         listener: (context, state) {
           loadingNotifier.value = state is! CommandSendingState;
 
-          if (state is CommandSendErrorState) {
-            AppSnack.show(context, message: state.message);
-          }
-
-          if (state is CommandSendSuccessState) {
+          if (state is CommandSentState) {
             context.router.pop();
           }
         },
@@ -63,11 +59,13 @@ class _NoteCommandPageState extends State<NoteCommandPage> {
                     child: AppButton(
                       buttonText: Strings.send,
                       buttonTapped: () {
-                        cubit.sendCommand(
-                          key: "note",
-                          value: noteController.text,
-                          connections: context.read<ConnectionCubit>().activeConnections,
-                        );
+                        for (var connection in context.read<ConnectionCubit>().activeConnections) {
+                          cubit.sendCommand(
+                            key: "note",
+                            value: noteController.text,
+                            connection: connection,
+                          );
+                        }
 
                         cubit.addToRecentNotes(noteController.text);
                       },

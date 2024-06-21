@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ximu3_app/core/widgets/app_expansion_tile.dart';
 import 'package:ximu3_app/features/connections/presentation/bloc/connection_cubit.dart';
 import 'package:ximu3_app/features/device_settings/presentation/bloc/device_settings_cubit.dart';
+import 'package:ximu3_app/features/commands/data/model/command_message.dart';
 
 import '../../../../core/injection_container.dart';
 import '../../../../core/shared_preferences/shared_preferences_abstract.dart';
@@ -23,7 +24,6 @@ class DeviceSettingsPage extends StatefulWidget {
 }
 
 class _DeviceSettingsPageState extends State<DeviceSettingsPage> {
-  ValueNotifier<bool> writingNotifier = ValueNotifier(false);
   final prefs = injector<SharedPreferencesAbstract>();
 
   void _saveExpandedState(String title, bool isExpanded, DeviceSettingsCubit cubit) async {
@@ -41,16 +41,11 @@ class _DeviceSettingsPageState extends State<DeviceSettingsPage> {
     }
   }
 
-  sendWriteCommand(String key, dynamic value, DeviceSettingsCubit cubit) {
+  sendCommand(String key, dynamic value, DeviceSettingsCubit cubit) {
     final selectedConnection = context.read<ConnectionCubit>().selectedConnection;
 
     if (selectedConnection != null) {
-      cubit.writeCommand(
-        key: key,
-        value: value,
-        connection: selectedConnection,
-        cubit: context.read<ConnectionCubit>(),
-      );
+      cubit.sendCommands([ CommandMessage(key: key, value: value) ], selectedConnection);
     }
   }
 
@@ -103,8 +98,7 @@ class _DeviceSettingsPageState extends State<DeviceSettingsPage> {
       return Container();
     }
 
-    List<Widget> childrenWidgets =
-        group.settings.map((item) => _buildItemWidget(item, cubit)).toList();
+    List<Widget> childrenWidgets = group.settings.map((item) => _buildItemWidget(item, cubit)).toList();
 
     childrenWidgets.addAll(group.subGroups.entries.map((e) => _buildSection(e.value, cubit)));
 
@@ -124,9 +118,9 @@ class _DeviceSettingsPageState extends State<DeviceSettingsPage> {
       return Container();
     }
 
-    if (item.items.isNotEmpty)  {
-        return _buildDropdown(item, cubit);
-      }
+    if (item.items.isNotEmpty) {
+      return _buildDropdown(item, cubit);
+    }
 
     return _buildTextField(cubit, item);
   }
@@ -139,13 +133,18 @@ class _DeviceSettingsPageState extends State<DeviceSettingsPage> {
         controller: item.controller!,
         enabled: !item.readOnly,
         onDone: (str) {
-          dynamic value = str;
-          if (item.type == "number")
-          {
-            value = num.parse(value);
+          dynamic value; // will be interpreted as null in json
+
+          if (item.type == "number") {
+            num? number = num.tryParse(str);
+            if (number != null) {
+              value = number;
+            }
+          } else {
+            value = str;
           }
 
-          sendWriteCommand(item.key!, value, cubit);
+          sendCommand(item.key!, value, cubit);
         },
       ),
     );
@@ -162,7 +161,7 @@ class _DeviceSettingsPageState extends State<DeviceSettingsPage> {
         ),
         onSelected: (Enumerator? enumerator) {
           if (enumerator != null && enumerator.value != item.value) {
-            sendWriteCommand(item.key!, enumerator.value, cubit);
+            sendCommand(item.key!, enumerator.value, cubit);
 
             item.value = enumerator.value;
             cubit.deviceSettingsNotifier.notifyListeners();
@@ -189,40 +188,20 @@ class _DeviceSettingsPageState extends State<DeviceSettingsPage> {
             create: (context) => injector<DeviceSettingsCubit>(),
             child: BlocConsumer<DeviceSettingsCubit, DeviceSettingsState>(
               listener: (context, state) {
-                writingNotifier.value = state is DeviceSettingsWritingState;
-
-                if (state is DeviceSettingsReadErrorState) {
-                  AppSnack.show(context, message: state.message);
-                }
-
-                if (state is DeviceSettingsWriteErrorState) {
-                  AppSnack.show(context, message: state.message);
-                }
-
                 FocusManager.instance.primaryFocus?.unfocus();
               },
-              buildWhen: (context, state) =>
-                  state is DeviceSettingsLoadErrorState ||
-                  state is DeviceSettingsLoadSuccessState ||
-                  state is DeviceSettingsLoadingState ||
-                  state is DeviceSettingsInitialState,
+              buildWhen: (context, state) => true,
               builder: (context, state) {
                 var cubit = context.read<DeviceSettingsCubit>();
                 cubit.deviceSettingsNotifier.value = snapshot.data!;
 
                 if (state is DeviceSettingsInitialState) {
-                  cubit.readDeviceSettings(
-                    connection: context.read<ConnectionCubit>().activeConnections.first,
-                    initialLoad: true,
+                  cubit.load(
+                    context.read<ConnectionCubit>().activeConnections.first,
                   );
                   return _variantOfScaffold(const AppLoader());
                 }
-                if (state is DeviceSettingsLoadErrorState) {
-                  return _variantOfScaffold(
-                    AppEmptyWidget(label: state.message),
-                    cubit: cubit,
-                  );
-                } else if (state is DeviceSettingsLoadSuccessState) {
+                if (state is DeviceSettingsLoadedState) {
                   return _variantOfScaffold(
                     Stack(
                       children: [
@@ -230,10 +209,8 @@ class _DeviceSettingsPageState extends State<DeviceSettingsPage> {
                           children: [
                             AppDeviceListHeader(
                               connectionSelected: (c) {
-                                cubit.readDeviceSettings(
-                                  connection:
-                                      context.read<ConnectionCubit>().activeConnections.first,
-                                  initialLoad: true,
+                                cubit.load(
+                                  context.read<ConnectionCubit>().activeConnections.first,
                                 );
                               },
                             ),
@@ -242,10 +219,8 @@ class _DeviceSettingsPageState extends State<DeviceSettingsPage> {
                                 backgroundColor: Palette.darkButtonColor,
                                 color: Palette.white,
                                 onRefresh: () async {
-                                  cubit.readDeviceSettings(
-                                    connection:
-                                        context.read<ConnectionCubit>().activeConnections.first,
-                                    initialLoad: true,
+                                  cubit.load(
+                                    context.read<ConnectionCubit>().activeConnections.first,
                                   );
                                   return;
                                 },
@@ -260,8 +235,7 @@ class _DeviceSettingsPageState extends State<DeviceSettingsPage> {
                                           return Padding(
                                             padding: const EdgeInsets.all(Constants.padding),
                                             child: Theme(
-                                              data: Theme.of(context)
-                                                  .copyWith(dividerColor: Colors.transparent),
+                                              data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
                                               child: Column(
                                                 children: (settings ?? {}).values.map((group) {
                                                   return _buildSection(group, cubit);
@@ -277,12 +251,6 @@ class _DeviceSettingsPageState extends State<DeviceSettingsPage> {
                               ),
                             ),
                           ],
-                        ),
-                        ValueListenableBuilder(
-                          valueListenable: writingNotifier,
-                          builder: (context, loading, _) {
-                            return AppLoader(show: loading);
-                          },
                         ),
                       ],
                     ),

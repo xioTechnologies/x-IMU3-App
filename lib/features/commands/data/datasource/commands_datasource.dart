@@ -20,7 +20,7 @@ class CommandsAPI extends API {
 
   NativeLibrary get api => API.api;
 
-  static Future<List<CommandMessage>> sendCommandAsync(List<CommandMessage> commands, Pointer<XIMU3_Connection> connection) async {
+  static Future<List<CommandMessage>> sendCommandsAsync(List<CommandMessage> commands, Pointer<XIMU3_Connection> connection) async {
     List<CommandMessage> responses = [];
 
     for (final CommandMessage command in commands) {
