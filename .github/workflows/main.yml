@@ -55,7 +55,8 @@ jobs:
       - name: Build
         run: flutter build ipa --export-options-plist=ios/ExportOptions.plist --build-number ${{ github.run_number }}
 
-      - name: Validate
+      - if: startsWith(github.ref, 'refs/tags/v')
+        name: Validate
         run: xcrun altool --validate-app -f build/ios/ipa/*.ipa --type ios -u ${{ secrets.AC_USERNAME }} -p ${{ secrets.AC_PASSWORD }}
 
       - if: startsWith(github.ref, 'refs/tags/v')
