@@ -38,11 +38,13 @@ class _CommandsPageState extends State<CommandsPage> {
                   buttonTitles: [Strings.cancel, Strings.yes],
                   buttonTap: (i) {
                     if (i == 1) {
-                      cubit.sendCommand(
-                        key: "shutdown",
-                        value: null,
-                        connections: context.read<ConnectionCubit>().activeConnections,
-                      );
+                      for (var connection in context.read<ConnectionCubit>().activeConnections) {
+                        cubit.sendCommand(
+                          key: "shutdown",
+                          value: null,
+                          connection: connection,
+                        );
+                      }
                     }
                   },
                 );
@@ -52,11 +54,13 @@ class _CommandsPageState extends State<CommandsPage> {
             ),
             CommandCard(
               tapped: () {
-                cubit.sendCommand(
-                  key: "heading",
-                  value: 0,
-                  connections: context.read<ConnectionCubit>().activeConnections,
-                );
+                for (var connection in context.read<ConnectionCubit>().activeConnections) {
+                  cubit.sendCommand(
+                    key: "heading",
+                    value: 0,
+                    connection: connection,
+                  );
+                }
               },
               title: Strings.zeroHeading,
               icon: Images.north,
@@ -85,10 +89,6 @@ class _CommandsPageState extends State<CommandsPage> {
       child: BlocConsumer<CommandCubit, CommandState>(
         listener: (context, state) {
           loadingNotifier.value = state is CommandSendingState;
-
-          if (state is CommandSendErrorState) {
-            AppSnack.show(context, message: state.message);
-          }
         },
         builder: (context, state) {
           var cubit = context.read<CommandCubit>();

@@ -16,17 +16,8 @@ class CommandSendingState extends CommandState {
   List<Object> get props => [];
 }
 
-class CommandSendErrorState extends CommandState {
-  final String message;
-
-  CommandSendErrorState(this.message);
-
-  @override
-  List<Object> get props => [message];
-}
-
-class CommandSendSuccessState extends CommandState {
-  CommandSendSuccessState();
+class CommandSentState extends CommandState {
+  CommandSentState();
 
   @override
   List<Object> get props => [];

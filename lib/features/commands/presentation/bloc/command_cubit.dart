@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:ximu3_app/features/commands/domain/usecases/write_command_usecase.dart';
+import 'package:ximu3_app/features/commands/domain/usecases/send_commands_usecase.dart';
 import 'package:ximu3_app/features/commands/presentation/bloc/command_state.dart';
 
 import '../../../../core/injection_container.dart';
@@ -12,7 +12,7 @@ import '../../../connections/data/model/connection.dart';
 import '../../data/model/command_message.dart';
 
 class CommandCubit extends Cubit<CommandState> {
-  final WriteCommandUseCase sendCommandUseCase;
+  final SendCommandsUseCase sendCommandUseCase;
 
   CommandCubit({
     required this.sendCommandUseCase,
@@ -23,30 +23,23 @@ class CommandCubit extends Cubit<CommandState> {
   void sendCommand({
     required String key,
     required dynamic value,
-    required List<Connection> connections,
+    required Connection connection,
   }) async {
     emit(CommandSendingState());
 
-    final failOrSuccess = await sendCommandUseCase.call(
-      WriteCommandUseCaseParams(
-        command: CommandMessage(
+    final responses = await sendCommandUseCase.call(
+      SendCommandsUseCaseParams(
+        commands: [CommandMessage(
           key: key,
           value: value,
-        ),
-        connections: connections,
+        )],
+        connection: connection,
       ),
     );
 
     if (isClosed) return;
 
-    failOrSuccess.fold(
-      (failure) {
-        emit(CommandSendErrorState(failure.message));
-      },
-      (data) {
-        emit(CommandSendSuccessState());
-      },
-    );
+    emit(CommandSentState());
   }
 
   addToRecentNotes(String note) async {

@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ximu3_app/features/commands/data/model/command_message.dart';
-import 'package:ximu3_app/features/commands/domain/usecases/write_command_usecase.dart';
+import 'package:ximu3_app/features/commands/domain/usecases/send_commands_usecase.dart';
 import 'package:ximu3_app/features/connections/data/model/connection_info.dart';
 import 'package:ximu3_app/features/connections/domain/usecases/new_connection_usecase.dart';
 import 'package:ximu3_app/features/connections/domain/usecases/new_manual_udp_connection_usecase.dart';
@@ -26,7 +26,7 @@ class ConnectionCubit extends Cubit<ConnectionsState> {
   final NewManualUDPConnectionUseCase newManualUDPConnectionUseCase;
   final GetAvailableConnectionsAsyncUseCase getAvailableConnectionsAsyncUseCase;
   final RemoveConnectionUseCase removeConnectionUseCase;
-  final WriteCommandUseCase writeCommandUseCase;
+  final SendCommandsUseCase sendCommandsUseCase;
 
   final ValueNotifier<List<Connection>> _activeConnections = ValueNotifier([]);
   Connection? _selectedConnection;
@@ -53,7 +53,7 @@ class ConnectionCubit extends Cubit<ConnectionsState> {
     required this.newConnectionUseCase,
     required this.getAvailableConnectionsAsyncUseCase,
     required this.removeConnectionUseCase,
-    required this.writeCommandUseCase,
+    required this.sendCommandsUseCase,
     required this.newManualUDPConnectionUseCase,
   }) : super(ConnectionInitialState());
 
@@ -281,11 +281,8 @@ class ConnectionCubit extends Cubit<ConnectionsState> {
   }) async {
     emit(ConnectionCommandSendingState());
 
-    await writeCommandUseCase.call(
-      WriteCommandUseCaseParams(
-        command: CommandMessage(key: key, value: value),
-        connections: [connection],
-      ),
+    await sendCommandsUseCase.call(
+      SendCommandsUseCaseParams(commands: [CommandMessage(key: key, value: value)], connection: connection)
     );
 
     emit(ConnectionCommandSentState());

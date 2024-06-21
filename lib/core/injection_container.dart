@@ -3,8 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ximu3_app/core/shared_preferences/shared_preferences_abstract.dart';
 import 'package:ximu3_app/core/shared_preferences/shared_preferences_impl.dart';
 import 'package:ximu3_app/features/commands/domain/repository/command_respository.dart';
-import 'package:ximu3_app/features/commands/domain/usecases/read_command_usecase.dart';
-import 'package:ximu3_app/features/commands/domain/usecases/write_command_usecase.dart';
+import 'package:ximu3_app/features/commands/domain/usecases/send_commands_usecase.dart';
 import 'package:ximu3_app/features/connections/domain/usecases/new_connection_usecase.dart';
 import 'package:ximu3_app/features/connections/domain/usecases/new_manual_udp_connection_usecase.dart';
 import 'package:ximu3_app/features/connections/domain/usecases/add_network_announcement_usecase.dart';
@@ -53,7 +52,7 @@ Future<void> init() async {
     () => ConnectionCubit(
       getAvailableConnectionsAsyncUseCase: injector(),
       removeConnectionUseCase: injector(),
-      writeCommandUseCase: injector(),
+      sendCommandsUseCase: injector(),
       newConnectionUseCase: injector(),
       newManualUDPConnectionUseCase: injector(),
     ),
@@ -74,13 +73,12 @@ Future<void> init() async {
 
   injector.registerFactory(
     () => DeviceSettingsCubit(
-      writeCommandUseCase: injector(),
-      readCommandUseCase: injector(),
+      sendCommandsUseCase: injector(),
     ),
   );
 
   //Usecases
-  injector.registerLazySingleton(() => WriteCommandUseCase(injector()));
+  injector.registerLazySingleton(() => SendCommandsUseCase(injector()));
   injector.registerLazySingleton(() => GetAvailableConnectionsAsyncUseCase(injector()));
   injector.registerLazySingleton(() => RemoveConnectionUseCase(injector()));
   injector.registerLazySingleton(() => GetSessionsUseCase(injector()));
@@ -88,7 +86,6 @@ Future<void> init() async {
   injector.registerLazySingleton(() => CreateSessionUseCase(injector()));
   injector.registerLazySingleton(() => DeleteSessionUseCase(injector()));
   injector.registerLazySingleton(() => AddNetworkAnnouncementUseCase(injector()));
-  injector.registerLazySingleton(() => ReadCommandsUseCase(injector()));
   injector.registerLazySingleton(() => RemoveNetworkAnnouncementUseCase(injector()));
   injector.registerLazySingleton(() => NewConnectionUseCase(injector()));
   injector.registerLazySingleton(() => NewManualUDPConnectionUseCase(injector()));
