@@ -9,84 +9,6 @@
 
 part of 'app_router.dart';
 
-abstract class _$AppRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, PageFactory> pagesMap = {
-    CommandsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const CommandsPage(),
-      );
-    },
-    ConnectionsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ConnectionsPage(),
-      );
-    },
-    DataLoggerNameRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const DataLoggerNamePage(),
-      );
-    },
-    DataLoggerRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const DataLoggerPage(),
-      );
-    },
-    DeviceSettingsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const DeviceSettingsPage(),
-      );
-    },
-    GraphLayoutRoute.name: (routeData) {
-      final args = routeData.argsAs<GraphLayoutRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: GraphLayoutPage(
-          key: args.key,
-          toggleGraph: args.toggleGraph,
-          graphs: args.graphs,
-        ),
-      );
-    },
-    ManualConnectionRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ManualConnectionPage(),
-      );
-    },
-    NewConnectionRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const NewConnectionPage(),
-      );
-    },
-    NoteCommandRoute.name: (routeData) {
-      final args = routeData.argsAs<NoteCommandRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: NoteCommandPage(
-          key: args.key,
-          devices: args.devices,
-        ),
-      );
-    },
-    TabRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const TabPage(),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [CommandsPage]
 class CommandsRoute extends PageRouteInfo<void> {
@@ -98,7 +20,12 @@ class CommandsRoute extends PageRouteInfo<void> {
 
   static const String name = 'CommandsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CommandsPage();
+    },
+  );
 }
 
 /// generated route for
@@ -112,7 +39,12 @@ class ConnectionsRoute extends PageRouteInfo<void> {
 
   static const String name = 'ConnectionsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ConnectionsPage();
+    },
+  );
 }
 
 /// generated route for
@@ -126,7 +58,12 @@ class DataLoggerNameRoute extends PageRouteInfo<void> {
 
   static const String name = 'DataLoggerNameRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const DataLoggerNamePage();
+    },
+  );
 }
 
 /// generated route for
@@ -140,7 +77,12 @@ class DataLoggerRoute extends PageRouteInfo<void> {
 
   static const String name = 'DataLoggerRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const DataLoggerPage();
+    },
+  );
 }
 
 /// generated route for
@@ -154,7 +96,12 @@ class DeviceSettingsRoute extends PageRouteInfo<void> {
 
   static const String name = 'DeviceSettingsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const DeviceSettingsPage();
+    },
+  );
 }
 
 /// generated route for
@@ -177,8 +124,17 @@ class GraphLayoutRoute extends PageRouteInfo<GraphLayoutRouteArgs> {
 
   static const String name = 'GraphLayoutRoute';
 
-  static const PageInfo<GraphLayoutRouteArgs> page =
-      PageInfo<GraphLayoutRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<GraphLayoutRouteArgs>();
+      return GraphLayoutPage(
+        key: args.key,
+        toggleGraph: args.toggleGraph,
+        graphs: args.graphs,
+      );
+    },
+  );
 }
 
 class GraphLayoutRouteArgs {
@@ -211,7 +167,12 @@ class ManualConnectionRoute extends PageRouteInfo<void> {
 
   static const String name = 'ManualConnectionRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ManualConnectionPage();
+    },
+  );
 }
 
 /// generated route for
@@ -225,7 +186,12 @@ class NewConnectionRoute extends PageRouteInfo<void> {
 
   static const String name = 'NewConnectionRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const NewConnectionPage();
+    },
+  );
 }
 
 /// generated route for
@@ -246,8 +212,16 @@ class NoteCommandRoute extends PageRouteInfo<NoteCommandRouteArgs> {
 
   static const String name = 'NoteCommandRoute';
 
-  static const PageInfo<NoteCommandRouteArgs> page =
-      PageInfo<NoteCommandRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<NoteCommandRouteArgs>();
+      return NoteCommandPage(
+        key: args.key,
+        devices: args.devices,
+      );
+    },
+  );
 }
 
 class NoteCommandRouteArgs {
@@ -277,5 +251,10 @@ class TabRoute extends PageRouteInfo<void> {
 
   static const String name = 'TabRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const TabPage();
+    },
+  );
 }

@@ -246,7 +246,7 @@ class _NewConnectionPageState extends State<NewConnectionPage> {
         listener: (context, state) {
           if (state is ConnectSuccessState) {
             context.read<ConnectionCubit>().selectConnection(checkedConnections.first);
-            context.router.pop();
+            context.router.popForced();
           }
 
           if (state is ConnectErrorState) {

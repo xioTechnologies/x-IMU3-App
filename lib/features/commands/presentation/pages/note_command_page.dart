@@ -38,7 +38,7 @@ class _NoteCommandPageState extends State<NoteCommandPage> {
           loadingNotifier.value = state is! CommandSendingState;
 
           if (state is CommandSentState) {
-            context.router.pop();
+            context.router.popForced();
           }
         },
         builder: (context, state) {

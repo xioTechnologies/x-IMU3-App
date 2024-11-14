@@ -68,7 +68,7 @@ class _GraphWidgetState extends State<GraphWidget> {
                     InkWell(
                       onTap: () {
                         if (widget.isFullScreen) {
-                          context.router.pop();
+                          context.router.popForced();
                         } else {
                           AppGraphFullScreen.show(
                             context: context,
