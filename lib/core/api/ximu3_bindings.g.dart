@@ -379,6 +379,23 @@ class NativeLibrary {
   late final _realloc = _reallocPtr
       .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
 
+  ffi.Pointer<ffi.Void> reallocf(
+    ffi.Pointer<ffi.Void> __ptr,
+    int __size,
+  ) {
+    return _reallocf(
+      __ptr,
+      __size,
+    );
+  }
+
+  late final _reallocfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              ffi.Pointer<ffi.Void>, ffi.Size)>>('reallocf');
+  late final _reallocf = _reallocfPtr
+      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
+
   ffi.Pointer<ffi.Void> valloc(
     int arg0,
   ) {
@@ -2027,23 +2044,6 @@ class NativeLibrary {
       _lookup<ffi.NativeFunction<ffi.Void Function()>>('srandomdev');
   late final _srandomdev = _srandomdevPtr.asFunction<void Function()>();
 
-  ffi.Pointer<ffi.Void> reallocf(
-    ffi.Pointer<ffi.Void> __ptr,
-    int __size,
-  ) {
-    return _reallocf(
-      __ptr,
-      __size,
-    );
-  }
-
-  late final _reallocfPtr = _lookup<
-      ffi.NativeFunction<
-          ffi.Pointer<ffi.Void> Function(
-              ffi.Pointer<ffi.Void>, ffi.Size)>>('reallocf');
-  late final _reallocf = _reallocfPtr
-      .asFunction<ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, int)>();
-
   int strtonum(
     ffi.Pointer<ffi.Char> __numstr,
     int __minval,
@@ -2909,6 +2909,39 @@ class NativeLibrary {
           int Function(ffi.Pointer<XIMU3_Connection>,
               XIMU3_CallbackErrorMessage, ffi.Pointer<ffi.Void>)>();
 
+  int XIMU3_connection_add_end_of_file_callback(
+    ffi.Pointer<XIMU3_Connection> connection,
+    ffi.Pointer<
+            ffi
+            .NativeFunction<ffi.Void Function(ffi.Pointer<ffi.Void> context)>>
+        callback,
+    ffi.Pointer<ffi.Void> context,
+  ) {
+    return _XIMU3_connection_add_end_of_file_callback(
+      connection,
+      callback,
+      context,
+    );
+  }
+
+  late final _XIMU3_connection_add_end_of_file_callbackPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint64 Function(
+                  ffi.Pointer<XIMU3_Connection>,
+                  ffi.Pointer<
+                      ffi.NativeFunction<
+                          ffi.Void Function(ffi.Pointer<ffi.Void> context)>>,
+                  ffi.Pointer<ffi.Void>)>>(
+      'XIMU3_connection_add_end_of_file_callback');
+  late final _XIMU3_connection_add_end_of_file_callback =
+      _XIMU3_connection_add_end_of_file_callbackPtr.asFunction<
+          int Function(
+              ffi.Pointer<XIMU3_Connection>,
+              ffi.Pointer<
+                  ffi.NativeFunction<
+                      ffi.Void Function(ffi.Pointer<ffi.Void> context)>>,
+              ffi.Pointer<ffi.Void>)>();
+
   void XIMU3_connection_remove_callback(
     ffi.Pointer<XIMU3_Connection> connection,
     int callback_id,
@@ -3039,13 +3072,13 @@ class NativeLibrary {
           ffi.Pointer<ffi.Char> Function(int)>();
 
   ffi.Pointer<XIMU3_DataLogger> XIMU3_data_logger_new(
-    ffi.Pointer<ffi.Char> directory,
+    ffi.Pointer<ffi.Char> destination,
     ffi.Pointer<ffi.Char> name,
     ffi.Pointer<ffi.Pointer<XIMU3_Connection>> connections,
     int length,
   ) {
     return _XIMU3_data_logger_new(
-      directory,
+      destination,
       name,
       connections,
       length,
@@ -3096,14 +3129,14 @@ class NativeLibrary {
       .asFunction<int Function(ffi.Pointer<XIMU3_DataLogger>)>();
 
   int XIMU3_data_logger_log(
-    ffi.Pointer<ffi.Char> directory,
+    ffi.Pointer<ffi.Char> destination,
     ffi.Pointer<ffi.Char> name,
     ffi.Pointer<ffi.Pointer<XIMU3_Connection>> connections,
     int length,
     int seconds,
   ) {
     return _XIMU3_data_logger_log(
-      directory,
+      destination,
       name,
       connections,
       length,
@@ -3497,13 +3530,17 @@ class NativeLibrary {
 
   ffi.Pointer<XIMU3_FileConverter> XIMU3_file_converter_new(
     ffi.Pointer<ffi.Char> destination,
-    ffi.Pointer<ffi.Char> source,
+    ffi.Pointer<ffi.Char> name,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> files,
+    int length,
     XIMU3_CallbackFileConverterProgress callback,
     ffi.Pointer<ffi.Void> context,
   ) {
     return _XIMU3_file_converter_new(
       destination,
-      source,
+      name,
+      files,
+      length,
       callback,
       context,
     );
@@ -3514,6 +3551,8 @@ class NativeLibrary {
           ffi.Pointer<XIMU3_FileConverter> Function(
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Uint32,
               XIMU3_CallbackFileConverterProgress,
               ffi.Pointer<ffi.Void>)>>('XIMU3_file_converter_new');
   late final _XIMU3_file_converter_new =
@@ -3521,6 +3560,8 @@ class NativeLibrary {
           ffi.Pointer<XIMU3_FileConverter> Function(
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              int,
               XIMU3_CallbackFileConverterProgress,
               ffi.Pointer<ffi.Void>)>();
 
@@ -3541,22 +3582,32 @@ class NativeLibrary {
 
   XIMU3_FileConverterProgress XIMU3_file_converter_convert(
     ffi.Pointer<ffi.Char> destination,
-    ffi.Pointer<ffi.Char> source,
+    ffi.Pointer<ffi.Char> name,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> file_paths,
+    int length,
   ) {
     return _XIMU3_file_converter_convert(
       destination,
-      source,
+      name,
+      file_paths,
+      length,
     );
   }
 
   late final _XIMU3_file_converter_convertPtr = _lookup<
       ffi.NativeFunction<
-          XIMU3_FileConverterProgress Function(ffi.Pointer<ffi.Char>,
-              ffi.Pointer<ffi.Char>)>>('XIMU3_file_converter_convert');
+          XIMU3_FileConverterProgress Function(
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              ffi.Uint32)>>('XIMU3_file_converter_convert');
   late final _XIMU3_file_converter_convert =
       _XIMU3_file_converter_convertPtr.asFunction<
           XIMU3_FileConverterProgress Function(
-              ffi.Pointer<ffi.Char>, ffi.Pointer<ffi.Char>)>();
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Char>,
+              ffi.Pointer<ffi.Pointer<ffi.Char>>,
+              int)>();
 
   XIMU3_TcpConnectionInfo
       XIMU3_network_announcement_message_to_tcp_connection_info(
@@ -3953,6 +4004,14 @@ final class arm_exception_state64 extends ffi.Struct {
 
 typedef __uint64_t = ffi.UnsignedLongLong;
 typedef Dart__uint64_t = int;
+
+final class arm_exception_state64_v2 extends ffi.Struct {
+  @__uint64_t()
+  external int far;
+
+  @__uint64_t()
+  external int esr;
+}
 
 final class arm_thread_state extends ffi.Struct {
   @ffi.Array.multi([13])
@@ -4875,7 +4934,22 @@ final class rusage_info_v6 extends ffi.Struct {
   @ffi.Uint64()
   external int ri_penergy_nj;
 
-  @ffi.Array.multi([14])
+  @ffi.Uint64()
+  external int ri_secure_time_in_system;
+
+  @ffi.Uint64()
+  external int ri_secure_ptime_in_system;
+
+  @ffi.Uint64()
+  external int ri_neural_footprint;
+
+  @ffi.Uint64()
+  external int ri_lifetime_max_neural_footprint;
+
+  @ffi.Uint64()
+  external int ri_interval_max_neural_footprint;
+
+  @ffi.Array.multi([9])
   external ffi.Array<ffi.Uint64> ri_reserved;
 }
 
@@ -5023,24 +5097,6 @@ final class proc_rlimit_control_wakeupmon extends ffi.Struct {
 
   @ffi.Int32()
   external int wm_rate;
-}
-
-@ffi.Packed(1)
-final class _OSUnalignedU16 extends ffi.Struct {
-  @ffi.Uint16()
-  external int __val;
-}
-
-@ffi.Packed(1)
-final class _OSUnalignedU32 extends ffi.Struct {
-  @ffi.Uint32()
-  external int __val;
-}
-
-@ffi.Packed(1)
-final class _OSUnalignedU64 extends ffi.Struct {
-  @ffi.Uint64()
-  external int __val;
 }
 
 final class wait extends ffi.Opaque {}
@@ -5482,7 +5538,7 @@ final class XIMU3_FileConverterProgress extends ffi.Struct {
   external int bytes_processed;
 
   @ffi.Uint64()
-  external int file_size;
+  external int bytes_total;
 }
 
 final class XIMU3_NetworkAnnouncementMessage extends ffi.Struct {
@@ -5691,6 +5747,8 @@ const int __bool_true_false_are_defined = 1;
 const int false1 = 0;
 
 const int true1 = 1;
+
+const int __has_safe_buffers = 1;
 
 const int __DARWIN_ONLY_64_BIT_INO_T = 0;
 
@@ -5960,6 +6018,14 @@ const int __MAC_14_1 = 140100;
 
 const int __MAC_14_2 = 140200;
 
+const int __MAC_14_3 = 140300;
+
+const int __MAC_14_4 = 140400;
+
+const int __MAC_14_5 = 140500;
+
+const int __MAC_15_0 = 150000;
+
 const int __IPHONE_2_0 = 20000;
 
 const int __IPHONE_2_1 = 20100;
@@ -6086,6 +6152,10 @@ const int __IPHONE_15_5 = 150500;
 
 const int __IPHONE_15_6 = 150600;
 
+const int __IPHONE_15_7 = 150700;
+
+const int __IPHONE_15_8 = 150800;
+
 const int __IPHONE_16_0 = 160000;
 
 const int __IPHONE_16_1 = 160100;
@@ -6107,6 +6177,14 @@ const int __IPHONE_17_0 = 170000;
 const int __IPHONE_17_1 = 170100;
 
 const int __IPHONE_17_2 = 170200;
+
+const int __IPHONE_17_3 = 170300;
+
+const int __IPHONE_17_4 = 170400;
+
+const int __IPHONE_17_5 = 170500;
+
+const int __IPHONE_18_0 = 180000;
 
 const int __WATCHOS_1_0 = 10000;
 
@@ -6174,6 +6252,8 @@ const int __WATCHOS_8_6 = 80600;
 
 const int __WATCHOS_8_7 = 80700;
 
+const int __WATCHOS_8_8 = 80800;
+
 const int __WATCHOS_9_0 = 90000;
 
 const int __WATCHOS_9_1 = 90100;
@@ -6193,6 +6273,14 @@ const int __WATCHOS_10_0 = 100000;
 const int __WATCHOS_10_1 = 100100;
 
 const int __WATCHOS_10_2 = 100200;
+
+const int __WATCHOS_10_3 = 100300;
+
+const int __WATCHOS_10_4 = 100400;
+
+const int __WATCHOS_10_5 = 100500;
+
+const int __WATCHOS_11_0 = 110000;
 
 const int __TVOS_9_0 = 90000;
 
@@ -6284,6 +6372,14 @@ const int __TVOS_17_1 = 170100;
 
 const int __TVOS_17_2 = 170200;
 
+const int __TVOS_17_3 = 170300;
+
+const int __TVOS_17_4 = 170400;
+
+const int __TVOS_17_5 = 170500;
+
+const int __TVOS_18_0 = 180000;
+
 const int __BRIDGEOS_2_0 = 20000;
 
 const int __BRIDGEOS_3_0 = 30000;
@@ -6330,6 +6426,14 @@ const int __BRIDGEOS_8_1 = 80100;
 
 const int __BRIDGEOS_8_2 = 80200;
 
+const int __BRIDGEOS_8_3 = 80300;
+
+const int __BRIDGEOS_8_4 = 80400;
+
+const int __BRIDGEOS_8_5 = 80500;
+
+const int __BRIDGEOS_9_0 = 90000;
+
 const int __DRIVERKIT_19_0 = 190000;
 
 const int __DRIVERKIT_20_0 = 200000;
@@ -6350,7 +6454,21 @@ const int __DRIVERKIT_23_1 = 230100;
 
 const int __DRIVERKIT_23_2 = 230200;
 
+const int __DRIVERKIT_23_3 = 230300;
+
+const int __DRIVERKIT_23_4 = 230400;
+
+const int __DRIVERKIT_23_5 = 230500;
+
+const int __DRIVERKIT_24_0 = 240000;
+
 const int __VISIONOS_1_0 = 10000;
+
+const int __VISIONOS_1_1 = 10100;
+
+const int __VISIONOS_1_2 = 10200;
+
+const int __VISIONOS_2_0 = 20000;
 
 const int MAC_OS_X_VERSION_10_0 = 1000;
 
@@ -6468,9 +6586,17 @@ const int MAC_OS_VERSION_14_1 = 140100;
 
 const int MAC_OS_VERSION_14_2 = 140200;
 
-const int __MAC_OS_X_VERSION_MIN_REQUIRED = 140000;
+const int MAC_OS_VERSION_14_3 = 140300;
 
-const int __MAC_OS_X_VERSION_MAX_ALLOWED = 140200;
+const int MAC_OS_VERSION_14_4 = 140400;
+
+const int MAC_OS_VERSION_14_5 = 140500;
+
+const int MAC_OS_VERSION_15_0 = 150000;
+
+const int __MAC_OS_X_VERSION_MIN_REQUIRED = 150000;
+
+const int __MAC_OS_X_VERSION_MAX_ALLOWED = 150000;
 
 const int __ENABLE_LEGACY_MAC_AVAILABILITY = 1;
 
@@ -6916,13 +7042,13 @@ const int __DARWIN_BIG_ENDIAN = 4321;
 
 const int __DARWIN_PDP_ENDIAN = 3412;
 
-const int __DARWIN_BYTE_ORDER = 1234;
-
 const int LITTLE_ENDIAN = 1234;
 
 const int BIG_ENDIAN = 4321;
 
 const int PDP_ENDIAN = 3412;
+
+const int __DARWIN_BYTE_ORDER = 1234;
 
 const int BYTE_ORDER = 1234;
 
