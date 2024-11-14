@@ -53,7 +53,7 @@ class _DataLoggerNamePageState extends State<DataLoggerNamePage> {
           child: AppButton(
             buttonText: Strings.start,
             buttonTapped: () {
-              context.router.pop(sessionName);
+              context.router.popForced(sessionName);
             },
           ),
         ),
