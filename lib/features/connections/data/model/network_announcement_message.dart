@@ -34,7 +34,7 @@ class NetworkAnnouncementMessage {
       udpReceive: pointer?.udp_receive,
       rssi: pointer?.rssi,
       battery: pointer?.battery,
-      chargingStatus: pointer?.charging_status,
+      chargingStatus: pointer?.charging_status.index,
     );
   }
 

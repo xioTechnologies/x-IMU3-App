@@ -22,7 +22,7 @@ class Connection {
   Device device;
   ConnectionInfo? connectionInfo;
   Color? color;
-  int? connectionType;
+  XIMU3_ConnectionType? connectionType;
   Pointer<XIMU3_Connection>? connectionPointer;
 
   StreamController<String>? _permanentStatisticsStreamController;

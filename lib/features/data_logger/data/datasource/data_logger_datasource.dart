@@ -39,7 +39,7 @@ class DataLoggerAPI {
     calloc.free(connectionsPointer);
 
     if (dataLoggerPointer != null) {
-      int result = api.XIMU3_data_logger_get_result(dataLoggerPointer!);
+      XIMU3_Result result = api.XIMU3_data_logger_get_result(dataLoggerPointer!);
 
       Pointer<Char> resultString = api.XIMU3_result_to_string(result);
       print("Data logger result: ${resultString.cast<Utf8>().toDartString()}");

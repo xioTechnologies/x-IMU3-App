@@ -82,6 +82,8 @@ class ConnectionsAPI extends API {
           connection.connectionInfo = USBConnectionInfo.fromXIMU3(
             nativeDevice.usb_connection_info,
           );
+        case XIMU3_ConnectionType.XIMU3_ConnectionTypeTcp:
+        case XIMU3_ConnectionType.XIMU3_ConnectionTypeUdp:
         case XIMU3_ConnectionType.XIMU3_ConnectionTypeSerial:
           connection.connectionInfo = SerialConnectionInfo.fromXIMU3(
             nativeDevice.serial_connection_info,
@@ -90,6 +92,7 @@ class ConnectionsAPI extends API {
           connection.connectionInfo = BluetoothConnectionInfo.fromXIMU3(
             nativeDevice.bluetooth_connection_info,
           );
+        case XIMU3_ConnectionType.XIMU3_ConnectionTypeFile:
       }
 
       connections.add(connection);
@@ -160,7 +163,7 @@ class ConnectionsAPI extends API {
     connectionPointer = processManualUDPConnection(ipAddress, sendPort, receivePort);
 
     if (connectionPointer != null) {
-      int result = api.XIMU3_connection_open(connectionPointer);
+      XIMU3_Result result = api.XIMU3_connection_open(connectionPointer);
       if (result == XIMU3_Result.XIMU3_ResultOk) {
         return connectionPointer;
       } else {
@@ -190,10 +193,12 @@ class ConnectionsAPI extends API {
         connectionPointer = processBluetoothConnection(connection);
       case XIMU3_ConnectionType.XIMU3_ConnectionTypeSerial:
         connectionPointer = processBluetoothConnection(connection);
+      case XIMU3_ConnectionType.XIMU3_ConnectionTypeFile:
+      case null:
     }
 
     if (connectionPointer != null) {
-      int result = api.XIMU3_connection_open(connectionPointer);
+      XIMU3_Result result = api.XIMU3_connection_open(connectionPointer);
       if (result == XIMU3_Result.XIMU3_ResultOk) {
         return connectionPointer;
       } else {
@@ -339,7 +344,7 @@ class ConnectionsAPI extends API {
       int callbackId = api.XIMU3_network_announcement_add_callback(
           networkAnnouncementPointer, _networkAnnouncementCallback!.nativeFunction, ffi.nullptr);
 
-      int result = api.XIMU3_network_announcement_get_result(networkAnnouncementPointer);
+      XIMU3_Result result = api.XIMU3_network_announcement_get_result(networkAnnouncementPointer);
 
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (result == XIMU3_Result.XIMU3_ResultError) {
@@ -428,7 +433,7 @@ class ConnectionsAPI extends API {
     );
 
     var batteryStatus = BatteryStatus(
-      status: message.charging_status.toDouble(),
+      status: message.charging_status.index.toDouble(),
       percentage: message.battery.toDouble(),
       timestamp: DateTime.now().millisecondsSinceEpoch,
     );
