@@ -32,7 +32,7 @@ class _ManualConnectionPageState extends State<ManualConnectionPage> {
         listener: (context, state) {
           if (state is ManualConnectSuccessState) {
             context.read<ConnectionCubit>().selectConnection(state.connection);
-            context.router.pop();
+            context.router.popForced();
           }
 
           if (state is ConnectErrorState) {
