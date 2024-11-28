@@ -1,29 +1,37 @@
 # x-IMU3-App
 
-## Original flutter create command
+## Development
+
+### Original Flutter create command
 
 `flutter create x-IMU3-App --project-name ximu3_app --org uk.co.x-io --platforms=android,ios`
 
-## Updating x-IMU3 API
+### Updating dependencies
 
-### Android
-1. Replace [android/app/src/main/jniLibs/arm64-v8a/libximu3.so](https://github.com/xioTechnologies/x-IMU3-App/blob/main/android/app/src/main/jniLibs/arm64-v8a/libximu3.so) with latest [x-IMU3-API-aarch64-linux-android.zip](https://github.com/xioTechnologies/x-IMU3-Software/releases/latest/download/x-IMU3-API-aarch64-linux-android.zip)
-2. Replace [android/app/src/main/jniLibs/x86_64/libximu3.so](https://github.com/xioTechnologies/x-IMU3-App/blob/main/android/app/src/main/jniLibs/x86_64/libximu3.so) with latest [x-IMU3-API-x86_64-linux-android.zip](https://github.com/xioTechnologies/x-IMU3-Software/releases/latest/download/x-IMU3-API-x86_64-linux-android.zip)
+1. Run `flutter pub upgrade --major-versions`
+2. Run `dart run build_runner build`
+3. Run `dart run flutter_native_splash:create`
+4. Run `flutter pub run flutter_launcher_icons`
+5. Run `dart run ffigen`
 
-### iOS
-1. Replace [ios/libximu3/libs/x-IMU3-API-aarch64-apple-ios/libximu3.dylib](https://github.com/xioTechnologies/x-IMU3-App/blob/main/ios/libximu3/libs/x-IMU3-API-aarch64-apple-ios/libximu3.dylib) with latest [x-IMU3-API-aarch64-apple-ios.zip](https://github.com/xioTechnologies/x-IMU3-Software/releases/latest/download/x-IMU3-API-aarch64-apple-ios.zip)
-2. Replace [ios/libximu3/libs/x-IMU3-API-aarch64-apple-ios-sim/libximu3.dylib](https://github.com/xioTechnologies/x-IMU3-App/blob/main/ios/libximu3/libs/x-IMU3-API-aarch64-apple-ios-sim/libximu3.dylib) with latest [x-IMU3-API-aarch64-apple-ios-sim.zip](https://github.com/xioTechnologies/x-IMU3-Software/releases/latest/download/x-IMU3-API-aarch64-apple-ios-sim.zip)
-3. Replace [ios/libximu3/libs/x-IMU3-API-x86_64-apple-ios/libximu3.dylib](https://github.com/xioTechnologies/x-IMU3-App/blob/main/ios/libximu3/libs/x-IMU3-API-x86_64-apple-ios/libximu3.dylib) with latest [x-IMU3-API-x86_64-apple-ios.zip](https://github.com/xioTechnologies/x-IMU3-Software/releases/latest/download/x-IMU3-API-x86_64-apple-ios.zip)
+### Updating x-IMU3 API
+
+#### Android
+1. Replace [android/app/src/main/jniLibs/arm64-v8a/libximu3.so](https://github.com/xioTechnologies/x-IMU3-App/blob/main/android/app/src/main/jniLibs/arm64-v8a/libximu3.so) with [latest](https://github.com/xioTechnologies/x-IMU3-Software/releases/latest/download/x-IMU3-API-aarch64-linux-android.zip)
+2. Replace [android/app/src/main/jniLibs/x86_64/libximu3.so](https://github.com/xioTechnologies/x-IMU3-App/blob/main/android/app/src/main/jniLibs/x86_64/libximu3.so) with [latest](https://github.com/xioTechnologies/x-IMU3-Software/releases/latest/download/x-IMU3-API-x86_64-linux-android.zip)
+
+#### iOS
+1. Replace [ios/libximu3/libs/x-IMU3-API-aarch64-apple-ios/libximu3.dylib](https://github.com/xioTechnologies/x-IMU3-App/blob/main/ios/libximu3/libs/x-IMU3-API-aarch64-apple-ios/libximu3.dylib) with [latest](https://github.com/xioTechnologies/x-IMU3-Software/releases/latest/download/x-IMU3-API-aarch64-apple-ios.zip)
+2. Replace [ios/libximu3/libs/x-IMU3-API-aarch64-apple-ios-sim/libximu3.dylib](https://github.com/xioTechnologies/x-IMU3-App/blob/main/ios/libximu3/libs/x-IMU3-API-aarch64-apple-ios-sim/libximu3.dylib) with [latest](https://github.com/xioTechnologies/x-IMU3-Software/releases/latest/download/x-IMU3-API-aarch64-apple-ios-sim.zip)
+3. Replace [ios/libximu3/libs/x-IMU3-API-x86_64-apple-ios/libximu3.dylib](https://github.com/xioTechnologies/x-IMU3-App/blob/main/ios/libximu3/libs/x-IMU3-API-x86_64-apple-ios/libximu3.dylib) with [latest](https://github.com/xioTechnologies/x-IMU3-Software/releases/latest/download/x-IMU3-API-x86_64-apple-ios.zip)
 4. Run `./libximu3.sh` from ios/libximu3 as working directory
 
-### ffigen
+#### ffigen
 1. Replace [lib/core/api/Ximu3.h](https://github.com/xioTechnologies/x-IMU3-App/blob/main/lib/core/api/Ximu3.h) with latest
 2. Run `dart run ffigen`
 
-## Generating splash screen assets
+## Release
 
-`dart run flutter_native_splash:create`
-
-## Generating launcher screen assets
-
-`flutter pub run flutter_launcher_icons`
+1. Update version in [pubspec.yaml](https://github.com/xioTechnologies/x-IMU3-App/blob/main/pubspec.yaml) and push tag
+2. Add new version in [appstoreconnect.apple.com](https://appstoreconnect.apple.com/)
+3. Add Build, Save, Add for Review, Submit to App Review
