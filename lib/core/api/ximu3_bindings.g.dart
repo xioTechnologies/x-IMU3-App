@@ -2128,16 +2128,16 @@ class NativeLibrary {
       _XIMU3_char_arrays_freePtr.asFunction<void Function(XIMU3_CharArrays)>();
 
   ffi.Pointer<ffi.Char> XIMU3_charging_status_to_string(
-    int charging_status,
+    XIMU3_ChargingStatus charging_status,
   ) {
     return _XIMU3_charging_status_to_string(
-      charging_status,
+      charging_status.value,
     );
   }
 
-  late final _XIMU3_charging_status_to_stringPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Int32)>>(
-          'XIMU3_charging_status_to_string');
+  late final _XIMU3_charging_status_to_stringPtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.UnsignedInt)>>(
+      'XIMU3_charging_status_to_string');
   late final _XIMU3_charging_status_to_string =
       _XIMU3_charging_status_to_stringPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(int)>();
@@ -2254,18 +2254,18 @@ class NativeLibrary {
   late final _XIMU3_connection_free = _XIMU3_connection_freePtr.asFunction<
       void Function(ffi.Pointer<XIMU3_Connection>)>();
 
-  int XIMU3_connection_open(
+  XIMU3_Result XIMU3_connection_open(
     ffi.Pointer<XIMU3_Connection> connection,
   ) {
-    return _XIMU3_connection_open(
+    return XIMU3_Result.fromValue(_XIMU3_connection_open(
       connection,
-    );
+    ));
   }
 
   late final _XIMU3_connection_openPtr = _lookup<
-          ffi
-          .NativeFunction<ffi.Int32 Function(ffi.Pointer<XIMU3_Connection>)>>(
-      'XIMU3_connection_open');
+      ffi.NativeFunction<
+          ffi.UnsignedInt Function(
+              ffi.Pointer<XIMU3_Connection>)>>('XIMU3_connection_open');
   late final _XIMU3_connection_open = _XIMU3_connection_openPtr.asFunction<
       int Function(ffi.Pointer<XIMU3_Connection>)>();
 
@@ -2389,18 +2389,18 @@ class NativeLibrary {
               XIMU3_CallbackCharArrays,
               ffi.Pointer<ffi.Void>)>();
 
-  int XIMU3_connection_get_type(
+  XIMU3_ConnectionType XIMU3_connection_get_type(
     ffi.Pointer<XIMU3_Connection> connection,
   ) {
-    return _XIMU3_connection_get_type(
+    return XIMU3_ConnectionType.fromValue(_XIMU3_connection_get_type(
       connection,
-    );
+    ));
   }
 
   late final _XIMU3_connection_get_typePtr = _lookup<
-          ffi
-          .NativeFunction<ffi.Int32 Function(ffi.Pointer<XIMU3_Connection>)>>(
-      'XIMU3_connection_get_type');
+      ffi.NativeFunction<
+          ffi.UnsignedInt Function(
+              ffi.Pointer<XIMU3_Connection>)>>('XIMU3_connection_get_type');
   late final _XIMU3_connection_get_type = _XIMU3_connection_get_typePtr
       .asFunction<int Function(ffi.Pointer<XIMU3_Connection>)>();
 
@@ -3057,16 +3057,16 @@ class NativeLibrary {
           ffi.Pointer<ffi.Char> Function(XIMU3_FileConnectionInfo)>();
 
   ffi.Pointer<ffi.Char> XIMU3_connection_type_to_string(
-    int connection_type,
+    XIMU3_ConnectionType connection_type,
   ) {
     return _XIMU3_connection_type_to_string(
-      connection_type,
+      connection_type.value,
     );
   }
 
-  late final _XIMU3_connection_type_to_stringPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Int32)>>(
-          'XIMU3_connection_type_to_string');
+  late final _XIMU3_connection_type_to_stringPtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.UnsignedInt)>>(
+      'XIMU3_connection_type_to_string');
   late final _XIMU3_connection_type_to_string =
       _XIMU3_connection_type_to_stringPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(int)>();
@@ -3113,40 +3113,40 @@ class NativeLibrary {
   late final _XIMU3_data_logger_free = _XIMU3_data_logger_freePtr.asFunction<
       void Function(ffi.Pointer<XIMU3_DataLogger>)>();
 
-  int XIMU3_data_logger_get_result(
+  XIMU3_Result XIMU3_data_logger_get_result(
     ffi.Pointer<XIMU3_DataLogger> data_logger,
   ) {
-    return _XIMU3_data_logger_get_result(
+    return XIMU3_Result.fromValue(_XIMU3_data_logger_get_result(
       data_logger,
-    );
+    ));
   }
 
   late final _XIMU3_data_logger_get_resultPtr = _lookup<
-          ffi
-          .NativeFunction<ffi.Int32 Function(ffi.Pointer<XIMU3_DataLogger>)>>(
-      'XIMU3_data_logger_get_result');
+      ffi.NativeFunction<
+          ffi.UnsignedInt Function(
+              ffi.Pointer<XIMU3_DataLogger>)>>('XIMU3_data_logger_get_result');
   late final _XIMU3_data_logger_get_result = _XIMU3_data_logger_get_resultPtr
       .asFunction<int Function(ffi.Pointer<XIMU3_DataLogger>)>();
 
-  int XIMU3_data_logger_log(
+  XIMU3_Result XIMU3_data_logger_log(
     ffi.Pointer<ffi.Char> destination,
     ffi.Pointer<ffi.Char> name,
     ffi.Pointer<ffi.Pointer<XIMU3_Connection>> connections,
     int length,
     int seconds,
   ) {
-    return _XIMU3_data_logger_log(
+    return XIMU3_Result.fromValue(_XIMU3_data_logger_log(
       destination,
       name,
       connections,
       length,
       seconds,
-    );
+    ));
   }
 
   late final _XIMU3_data_logger_logPtr = _lookup<
       ffi.NativeFunction<
-          ffi.Int32 Function(
+          ffi.UnsignedInt Function(
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Char>,
               ffi.Pointer<ffi.Pointer<XIMU3_Connection>>,
@@ -3484,30 +3484,30 @@ class NativeLibrary {
           XIMU3_EulerAnglesMessage Function(XIMU3_EarthAccelerationMessage)>();
 
   ffi.Pointer<ffi.Char> XIMU3_decode_error_to_string(
-    int decode_error,
+    XIMU3_DecodeError decode_error,
   ) {
     return _XIMU3_decode_error_to_string(
-      decode_error,
+      decode_error.value,
     );
   }
 
-  late final _XIMU3_decode_error_to_stringPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Int32)>>(
-          'XIMU3_decode_error_to_string');
+  late final _XIMU3_decode_error_to_stringPtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.UnsignedInt)>>(
+      'XIMU3_decode_error_to_string');
   late final _XIMU3_decode_error_to_string = _XIMU3_decode_error_to_stringPtr
       .asFunction<ffi.Pointer<ffi.Char> Function(int)>();
 
   ffi.Pointer<ffi.Char> XIMU3_file_converter_status_to_string(
-    int status,
+    XIMU3_FileConverterStatus status,
   ) {
     return _XIMU3_file_converter_status_to_string(
-      status,
+      status.value,
     );
   }
 
-  late final _XIMU3_file_converter_status_to_stringPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Int32)>>(
-          'XIMU3_file_converter_status_to_string');
+  late final _XIMU3_file_converter_status_to_stringPtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.UnsignedInt)>>(
+      'XIMU3_file_converter_status_to_string');
   late final _XIMU3_file_converter_status_to_string =
       _XIMU3_file_converter_status_to_stringPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(int)>();
@@ -3708,17 +3708,18 @@ class NativeLibrary {
       _XIMU3_network_announcement_freePtr.asFunction<
           void Function(ffi.Pointer<XIMU3_NetworkAnnouncement>)>();
 
-  int XIMU3_network_announcement_get_result(
+  XIMU3_Result XIMU3_network_announcement_get_result(
     ffi.Pointer<XIMU3_NetworkAnnouncement> network_announcement,
   ) {
-    return _XIMU3_network_announcement_get_result(
+    return XIMU3_Result.fromValue(_XIMU3_network_announcement_get_result(
       network_announcement,
-    );
+    ));
   }
 
   late final _XIMU3_network_announcement_get_resultPtr = _lookup<
           ffi.NativeFunction<
-              ffi.Int32 Function(ffi.Pointer<XIMU3_NetworkAnnouncement>)>>(
+              ffi.UnsignedInt Function(
+                  ffi.Pointer<XIMU3_NetworkAnnouncement>)>>(
       'XIMU3_network_announcement_get_result');
   late final _XIMU3_network_announcement_get_result =
       _XIMU3_network_announcement_get_resultPtr.asFunction<
@@ -3909,15 +3910,15 @@ class NativeLibrary {
       _XIMU3_port_scanner_scanPtr.asFunction<XIMU3_Devices Function()>();
 
   XIMU3_Devices XIMU3_port_scanner_scan_filter(
-    int connection_type,
+    XIMU3_ConnectionType connection_type,
   ) {
     return _XIMU3_port_scanner_scan_filter(
-      connection_type,
+      connection_type.value,
     );
   }
 
   late final _XIMU3_port_scanner_scan_filterPtr =
-      _lookup<ffi.NativeFunction<XIMU3_Devices Function(ffi.Int32)>>(
+      _lookup<ffi.NativeFunction<XIMU3_Devices Function(ffi.UnsignedInt)>>(
           'XIMU3_port_scanner_scan_filter');
   late final _XIMU3_port_scanner_scan_filter =
       _XIMU3_port_scanner_scan_filterPtr.asFunction<
@@ -3935,16 +3936,16 @@ class NativeLibrary {
           XIMU3_CharArrays Function()>();
 
   ffi.Pointer<ffi.Char> XIMU3_result_to_string(
-    int result,
+    XIMU3_Result result,
   ) {
     return _XIMU3_result_to_string(
-      result,
+      result.value,
     );
   }
 
-  late final _XIMU3_result_to_stringPtr =
-      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.Int32)>>(
-          'XIMU3_result_to_string');
+  late final _XIMU3_result_to_stringPtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<ffi.Char> Function(ffi.UnsignedInt)>>(
+      'XIMU3_result_to_string');
   late final _XIMU3_result_to_string = _XIMU3_result_to_stringPtr.asFunction<
       ffi.Pointer<ffi.Char> Function(int)>();
 
@@ -3971,10 +3972,20 @@ final class __mbstate_t extends ffi.Union {
   external int _mbstateL;
 }
 
-abstract class idtype_t {
-  static const int P_ALL = 0;
-  static const int P_PID = 1;
-  static const int P_PGID = 2;
+enum idtype_t {
+  P_ALL(0),
+  P_PID(1),
+  P_PGID(2);
+
+  final int value;
+  const idtype_t(this.value);
+
+  static idtype_t fromValue(int value) => switch (value) {
+        0 => P_ALL,
+        1 => P_PID,
+        2 => P_PGID,
+        _ => throw ArgumentError("Unknown value for idtype_t: $value"),
+      };
 }
 
 final class arm_exception_state extends ffi.Struct {
@@ -5138,42 +5149,103 @@ typedef __darwin_mode_t = __uint16_t;
 typedef __uint16_t = ffi.UnsignedShort;
 typedef Dart__uint16_t = int;
 
-abstract class XIMU3_ChargingStatus {
-  static const int XIMU3_ChargingStatusNotConnected = 0;
-  static const int XIMU3_ChargingStatusCharging = 1;
-  static const int XIMU3_ChargingStatusChargingComplete = 2;
+enum XIMU3_ChargingStatus {
+  XIMU3_ChargingStatusNotConnected(0),
+  XIMU3_ChargingStatusCharging(1),
+  XIMU3_ChargingStatusChargingComplete(2);
+
+  final int value;
+  const XIMU3_ChargingStatus(this.value);
+
+  static XIMU3_ChargingStatus fromValue(int value) => switch (value) {
+        0 => XIMU3_ChargingStatusNotConnected,
+        1 => XIMU3_ChargingStatusCharging,
+        2 => XIMU3_ChargingStatusChargingComplete,
+        _ =>
+          throw ArgumentError("Unknown value for XIMU3_ChargingStatus: $value"),
+      };
 }
 
-abstract class XIMU3_ConnectionType {
-  static const int XIMU3_ConnectionTypeUsb = 0;
-  static const int XIMU3_ConnectionTypeSerial = 1;
-  static const int XIMU3_ConnectionTypeTcp = 2;
-  static const int XIMU3_ConnectionTypeUdp = 3;
-  static const int XIMU3_ConnectionTypeBluetooth = 4;
-  static const int XIMU3_ConnectionTypeFile = 5;
+enum XIMU3_ConnectionType {
+  XIMU3_ConnectionTypeUsb(0),
+  XIMU3_ConnectionTypeSerial(1),
+  XIMU3_ConnectionTypeTcp(2),
+  XIMU3_ConnectionTypeUdp(3),
+  XIMU3_ConnectionTypeBluetooth(4),
+  XIMU3_ConnectionTypeFile(5);
+
+  final int value;
+  const XIMU3_ConnectionType(this.value);
+
+  static XIMU3_ConnectionType fromValue(int value) => switch (value) {
+        0 => XIMU3_ConnectionTypeUsb,
+        1 => XIMU3_ConnectionTypeSerial,
+        2 => XIMU3_ConnectionTypeTcp,
+        3 => XIMU3_ConnectionTypeUdp,
+        4 => XIMU3_ConnectionTypeBluetooth,
+        5 => XIMU3_ConnectionTypeFile,
+        _ =>
+          throw ArgumentError("Unknown value for XIMU3_ConnectionType: $value"),
+      };
 }
 
-abstract class XIMU3_DecodeError {
-  static const int XIMU3_DecodeErrorBufferOverrun = 0;
-  static const int XIMU3_DecodeErrorInvalidMessageIdentifier = 1;
-  static const int XIMU3_DecodeErrorInvalidUtf8 = 2;
-  static const int XIMU3_DecodeErrorInvalidJson = 3;
-  static const int XIMU3_DecodeErrorJsonIsNotAnObject = 4;
-  static const int XIMU3_DecodeErrorJsonObjectIsNotASingleKeyValuePair = 5;
-  static const int XIMU3_DecodeErrorInvalidEscapeSequence = 6;
-  static const int XIMU3_DecodeErrorInvalidBinaryMessageLength = 7;
-  static const int XIMU3_DecodeErrorUnableToParseAsciiMessage = 8;
+enum XIMU3_DecodeError {
+  XIMU3_DecodeErrorBufferOverrun(0),
+  XIMU3_DecodeErrorInvalidMessageIdentifier(1),
+  XIMU3_DecodeErrorInvalidUtf8(2),
+  XIMU3_DecodeErrorInvalidJson(3),
+  XIMU3_DecodeErrorJsonIsNotAnObject(4),
+  XIMU3_DecodeErrorJsonObjectIsNotASingleKeyValuePair(5),
+  XIMU3_DecodeErrorInvalidEscapeSequence(6),
+  XIMU3_DecodeErrorInvalidBinaryMessageLength(7),
+  XIMU3_DecodeErrorUnableToParseAsciiMessage(8);
+
+  final int value;
+  const XIMU3_DecodeError(this.value);
+
+  static XIMU3_DecodeError fromValue(int value) => switch (value) {
+        0 => XIMU3_DecodeErrorBufferOverrun,
+        1 => XIMU3_DecodeErrorInvalidMessageIdentifier,
+        2 => XIMU3_DecodeErrorInvalidUtf8,
+        3 => XIMU3_DecodeErrorInvalidJson,
+        4 => XIMU3_DecodeErrorJsonIsNotAnObject,
+        5 => XIMU3_DecodeErrorJsonObjectIsNotASingleKeyValuePair,
+        6 => XIMU3_DecodeErrorInvalidEscapeSequence,
+        7 => XIMU3_DecodeErrorInvalidBinaryMessageLength,
+        8 => XIMU3_DecodeErrorUnableToParseAsciiMessage,
+        _ => throw ArgumentError("Unknown value for XIMU3_DecodeError: $value"),
+      };
 }
 
-abstract class XIMU3_FileConverterStatus {
-  static const int XIMU3_FileConverterStatusComplete = 0;
-  static const int XIMU3_FileConverterStatusFailed = 1;
-  static const int XIMU3_FileConverterStatusInProgress = 2;
+enum XIMU3_FileConverterStatus {
+  XIMU3_FileConverterStatusComplete(0),
+  XIMU3_FileConverterStatusFailed(1),
+  XIMU3_FileConverterStatusInProgress(2);
+
+  final int value;
+  const XIMU3_FileConverterStatus(this.value);
+
+  static XIMU3_FileConverterStatus fromValue(int value) => switch (value) {
+        0 => XIMU3_FileConverterStatusComplete,
+        1 => XIMU3_FileConverterStatusFailed,
+        2 => XIMU3_FileConverterStatusInProgress,
+        _ => throw ArgumentError(
+            "Unknown value for XIMU3_FileConverterStatus: $value"),
+      };
 }
 
-abstract class XIMU3_Result {
-  static const int XIMU3_ResultOk = 0;
-  static const int XIMU3_ResultError = 1;
+enum XIMU3_Result {
+  XIMU3_ResultOk(0),
+  XIMU3_ResultError(1);
+
+  final int value;
+  const XIMU3_Result(this.value);
+
+  static XIMU3_Result fromValue(int value) => switch (value) {
+        0 => XIMU3_ResultOk,
+        1 => XIMU3_ResultError,
+        _ => throw ArgumentError("Unknown value for XIMU3_Result: $value"),
+      };
 }
 
 final class XIMU3_Connection extends ffi.Opaque {}
@@ -5242,8 +5314,10 @@ final class XIMU3_FileConnectionInfo extends ffi.Struct {
 }
 
 final class XIMU3_PingResponse extends ffi.Struct {
-  @ffi.Int32()
-  external int result;
+  @ffi.UnsignedInt()
+  external int resultAsInt;
+
+  XIMU3_Result get result => XIMU3_Result.fromValue(resultAsInt);
 
   @ffi.Array.multi([256])
   external ffi.Array<ffi.Char> interface1;
@@ -5528,8 +5602,11 @@ final class XIMU3_ErrorMessage extends ffi.Struct {
 }
 
 final class XIMU3_FileConverterProgress extends ffi.Struct {
-  @ffi.Int32()
-  external int status;
+  @ffi.UnsignedInt()
+  external int statusAsInt;
+
+  XIMU3_FileConverterStatus get status =>
+      XIMU3_FileConverterStatus.fromValue(statusAsInt);
 
   @ffi.Float()
   external double percentage;
@@ -5566,8 +5643,11 @@ final class XIMU3_NetworkAnnouncementMessage extends ffi.Struct {
   @ffi.Int32()
   external int battery;
 
-  @ffi.Int32()
-  external int charging_status;
+  @ffi.UnsignedInt()
+  external int charging_statusAsInt;
+
+  XIMU3_ChargingStatus get charging_status =>
+      XIMU3_ChargingStatus.fromValue(charging_statusAsInt);
 }
 
 final class XIMU3_NetworkAnnouncementMessages extends ffi.Struct {
@@ -5587,8 +5667,11 @@ final class XIMU3_Device extends ffi.Struct {
   @ffi.Array.multi([256])
   external ffi.Array<ffi.Char> serial_number;
 
-  @ffi.Int32()
-  external int connection_type;
+  @ffi.UnsignedInt()
+  external int connection_typeAsInt;
+
+  XIMU3_ConnectionType get connection_type =>
+      XIMU3_ConnectionType.fromValue(connection_typeAsInt);
 
   external XIMU3_UsbConnectionInfo usb_connection_info;
 
@@ -5610,9 +5693,9 @@ final class XIMU3_Devices extends ffi.Struct {
 typedef XIMU3_CallbackResult
     = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackResultFunction>>;
 typedef XIMU3_CallbackResultFunction = ffi.Void Function(
-    ffi.Int32 data, ffi.Pointer<ffi.Void> context);
+    ffi.UnsignedInt data, ffi.Pointer<ffi.Void> context);
 typedef DartXIMU3_CallbackResultFunction = void Function(
-    int data, ffi.Pointer<ffi.Void> context);
+    XIMU3_Result data, ffi.Pointer<ffi.Void> context);
 typedef XIMU3_CallbackCharArrays
     = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackCharArraysFunction>>;
 typedef XIMU3_CallbackCharArraysFunction = ffi.Void Function(
@@ -5622,9 +5705,9 @@ typedef DartXIMU3_CallbackCharArraysFunction = void Function(
 typedef XIMU3_CallbackDecodeError
     = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackDecodeErrorFunction>>;
 typedef XIMU3_CallbackDecodeErrorFunction = ffi.Void Function(
-    ffi.Int32 data, ffi.Pointer<ffi.Void> context);
+    ffi.UnsignedInt data, ffi.Pointer<ffi.Void> context);
 typedef DartXIMU3_CallbackDecodeErrorFunction = void Function(
-    int data, ffi.Pointer<ffi.Void> context);
+    XIMU3_DecodeError data, ffi.Pointer<ffi.Void> context);
 typedef XIMU3_CallbackStatistics
     = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackStatisticsFunction>>;
 typedef XIMU3_CallbackStatisticsFunction = ffi.Void Function(
