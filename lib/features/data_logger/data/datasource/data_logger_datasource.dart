@@ -60,6 +60,7 @@ class DataLoggerAPI {
     if (dataLoggerPointer != null) {
       await zipSession(sessionName);
       api.XIMU3_data_logger_free(dataLoggerPointer!);
+      dataLoggerPointer = null;
       return true;
     } else {
       return false;
