@@ -2142,6 +2142,21 @@ class NativeLibrary {
       _XIMU3_charging_status_to_stringPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(int)>();
 
+  XIMU3_CommandMessage XIMU3_command_message_parse(
+    ffi.Pointer<ffi.Char> json,
+  ) {
+    return _XIMU3_command_message_parse(
+      json,
+    );
+  }
+
+  late final _XIMU3_command_message_parsePtr = _lookup<
+      ffi.NativeFunction<
+          XIMU3_CommandMessage Function(
+              ffi.Pointer<ffi.Char>)>>('XIMU3_command_message_parse');
+  late final _XIMU3_command_message_parse = _XIMU3_command_message_parsePtr
+      .asFunction<XIMU3_CommandMessage Function(ffi.Pointer<ffi.Char>)>();
+
   ffi.Pointer<XIMU3_Connection> XIMU3_connection_new_usb(
     XIMU3_UsbConnectionInfo connection_info,
   ) {
@@ -5266,6 +5281,23 @@ final class XIMU3_CharArrays extends ffi.Struct {
 
   @ffi.Uint32()
   external int capacity;
+}
+
+final class XIMU3_CommandMessage extends ffi.Struct {
+  @ffi.Array.multi([256])
+  external ffi.Array<ffi.Char> json;
+
+  @ffi.Array.multi([256])
+  external ffi.Array<ffi.Char> terminated_json;
+
+  @ffi.Array.multi([256])
+  external ffi.Array<ffi.Char> key;
+
+  @ffi.Array.multi([256])
+  external ffi.Array<ffi.Char> value;
+
+  @ffi.Array.multi([256])
+  external ffi.Array<ffi.Char> error;
 }
 
 final class XIMU3_UsbConnectionInfo extends ffi.Struct {

@@ -45,7 +45,7 @@ class _DeviceSettingsPageState extends State<DeviceSettingsPage> {
     final selectedConnection = context.read<ConnectionCubit>().selectedConnection;
 
     if (selectedConnection != null) {
-      cubit.sendCommands([ CommandMessage(key: key, value: value) ], selectedConnection);
+      cubit.sendCommands([ CommandMessage(key, value) ], selectedConnection);
     }
   }
 
