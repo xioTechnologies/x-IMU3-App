@@ -16,13 +16,11 @@ import '../../../../core/widgets/index.dart';
 import '../../domain/usecases/add_network_announcement_usecase.dart';
 import '../model/index.dart';
 
-class ConnectionsAPI extends API {
+class ConnectionsAPI {
   static final ConnectionsAPI _instance = ConnectionsAPI._internal();
   static ConnectionsAPI get instance => _instance;
 
   ConnectionsAPI._internal();
-
-  static NativeLibrary get api => API.api;
 
   NativeCallable<Void Function(XIMU3_NetworkAnnouncementMessage, Pointer<Void>)>?
       _networkAnnouncementCallback;
@@ -64,7 +62,7 @@ class ConnectionsAPI extends API {
   }
 
   List<Connection> getAvailableConnections() {
-    XIMU3_Devices devices = api.XIMU3_port_scanner_scan();
+    XIMU3_Devices devices = API.api.XIMU3_port_scanner_scan();
     Pointer<XIMU3_Device> listDevices = devices.array.cast<XIMU3_Device>();
 
     List<Connection> connections = [];
@@ -104,7 +102,7 @@ class ConnectionsAPI extends API {
   XIMU3_TcpConnectionInfo? networkAnnouncementToTCPConnectionInfo(
       XIMU3_NetworkAnnouncementMessage? message) {
     if (message != null) {
-      return api.XIMU3_network_announcement_message_to_tcp_connection_info(message);
+      return API.api.XIMU3_network_announcement_message_to_tcp_connection_info(message);
     }
     return null;
   }
@@ -112,28 +110,28 @@ class ConnectionsAPI extends API {
   XIMU3_UdpConnectionInfo? networkAnnouncementToUDPConnectionInfo(
       XIMU3_NetworkAnnouncementMessage? message) {
     if (message != null) {
-      return api.XIMU3_network_announcement_message_to_udp_connection_info(message);
+      return API.api.XIMU3_network_announcement_message_to_udp_connection_info(message);
     }
     return null;
   }
 
   String usbConnectionInfo(XIMU3_UsbConnectionInfo? connectionInfo) {
     if (connectionInfo != null) {
-      return api.XIMU3_usb_connection_info_to_string(connectionInfo).cast<Utf8>().toDartString();
+      return API.api.XIMU3_usb_connection_info_to_string(connectionInfo).cast<Utf8>().toDartString();
     }
     return "";
   }
 
   String serialConnectionInfo(XIMU3_SerialConnectionInfo? connectionInfo) {
     if (connectionInfo != null) {
-      return api.XIMU3_serial_connection_info_to_string(connectionInfo).cast<Utf8>().toDartString();
+      return API.api.XIMU3_serial_connection_info_to_string(connectionInfo).cast<Utf8>().toDartString();
     }
     return "";
   }
 
   String bluetoothConnectionInfo(XIMU3_BluetoothConnectionInfo? connectionInfo) {
     if (connectionInfo != null) {
-      return api.XIMU3_bluetooth_connection_info_to_string(connectionInfo)
+      return API.api.XIMU3_bluetooth_connection_info_to_string(connectionInfo)
           .cast<Utf8>()
           .toDartString();
     }
@@ -142,14 +140,14 @@ class ConnectionsAPI extends API {
 
   String tcpConnectionInfo(XIMU3_TcpConnectionInfo? connectionInfo) {
     if (connectionInfo != null) {
-      return api.XIMU3_tcp_connection_info_to_string(connectionInfo).cast<Utf8>().toDartString();
+      return API.api.XIMU3_tcp_connection_info_to_string(connectionInfo).cast<Utf8>().toDartString();
     }
     return "";
   }
 
   String udpConnectionInfo(XIMU3_UdpConnectionInfo? connectionInfo) {
     if (connectionInfo != null) {
-      return api.XIMU3_udp_connection_info_to_string(connectionInfo).cast<Utf8>().toDartString();
+      return API.api.XIMU3_udp_connection_info_to_string(connectionInfo).cast<Utf8>().toDartString();
     }
     return "";
   }
@@ -163,7 +161,7 @@ class ConnectionsAPI extends API {
     connectionPointer = processManualUDPConnection(ipAddress, sendPort, receivePort);
 
     if (connectionPointer != null) {
-      XIMU3_Result result = api.XIMU3_connection_open(connectionPointer);
+      XIMU3_Result result = API.api.XIMU3_connection_open(connectionPointer);
       if (result == XIMU3_Result.XIMU3_ResultOk) {
         return connectionPointer;
       } else {
@@ -198,7 +196,7 @@ class ConnectionsAPI extends API {
     }
 
     if (connectionPointer != null) {
-      XIMU3_Result result = api.XIMU3_connection_open(connectionPointer);
+      XIMU3_Result result = API.api.XIMU3_connection_open(connectionPointer);
       if (result == XIMU3_Result.XIMU3_ResultOk) {
         return connectionPointer;
       } else {
@@ -225,7 +223,7 @@ class ConnectionsAPI extends API {
 
     connectionInfo.port_name[portNameBytes.length] = 0;
 
-    return api.XIMU3_connection_new_usb(connectionInfo);
+    return API.api.XIMU3_connection_new_usb(connectionInfo);
   }
 
   Pointer<XIMU3_Connection>? processBluetoothConnection(Connection connection) {
@@ -242,7 +240,7 @@ class ConnectionsAPI extends API {
 
     connectionInfo.port_name[portNameBytes.length] = 0;
 
-    return api.XIMU3_connection_new_bluetooth(connectionInfo);
+    return API.api.XIMU3_connection_new_bluetooth(connectionInfo);
   }
 
   Pointer<XIMU3_Connection>? processSerialConnection(Connection connection) {
@@ -262,7 +260,7 @@ class ConnectionsAPI extends API {
 
     connectionInfo.port_name[portNameBytes.length] = 0;
 
-    return api.XIMU3_connection_new_serial(connectionInfo);
+    return API.api.XIMU3_connection_new_serial(connectionInfo);
   }
 
   Pointer<XIMU3_Connection>? processTCPConnection(Connection connection) {
@@ -279,7 +277,7 @@ class ConnectionsAPI extends API {
 
     connectionInfo.ip_address[ipAddressBytes.length] = 0;
 
-    return api.XIMU3_connection_new_tcp(connectionInfo);
+    return API.api.XIMU3_connection_new_tcp(connectionInfo);
   }
 
   Pointer<XIMU3_Connection>? processManualUDPConnection(
@@ -298,7 +296,7 @@ class ConnectionsAPI extends API {
 
     connectionInfo.ip_address[ipAddressBytes.length] = 0;
 
-    return api.XIMU3_connection_new_udp(connectionInfo);
+    return API.api.XIMU3_connection_new_udp(connectionInfo);
   }
 
   Pointer<XIMU3_Connection>? processUDPConnection(Connection connection) {
@@ -316,7 +314,7 @@ class ConnectionsAPI extends API {
 
     connectionInfo.ip_address[ipAddressBytes.length] = 0;
 
-    return api.XIMU3_connection_new_udp(connectionInfo);
+    return API.api.XIMU3_connection_new_udp(connectionInfo);
   }
 
   bool removeConnection(List<Connection> connections, ConnectionCubit cubit) {
@@ -324,8 +322,8 @@ class ConnectionsAPI extends API {
 
     for (var connection in connections) {
       if (connection.connectionPointer != null) {
-        api.XIMU3_connection_close(connection.connectionPointer!);
-        api.XIMU3_connection_free(connection.connectionPointer!);
+        API.api.XIMU3_connection_close(connection.connectionPointer!);
+        API.api.XIMU3_connection_free(connection.connectionPointer!);
       }
     }
     return true;
@@ -334,17 +332,17 @@ class ConnectionsAPI extends API {
   NetworkAnnouncementCallbackResult? addNetworkAnnouncementCallback(
       AddNetworkAnnouncementUseCaseParams params) {
     Pointer<XIMU3_NetworkAnnouncement>? networkAnnouncementPointer =
-        api.XIMU3_network_announcement_new();
+        API.api.XIMU3_network_announcement_new();
 
     _networkAnnouncementCallback = NativeCallable<
         ffi.Void Function(XIMU3_NetworkAnnouncementMessage data,
             ffi.Pointer<ffi.Void> context)>.listener(networkAnnouncementCallbackResult);
 
     if (_networkAnnouncementCallback != null) {
-      int callbackId = api.XIMU3_network_announcement_add_callback(
+      int callbackId = API.api.XIMU3_network_announcement_add_callback(
           networkAnnouncementPointer, _networkAnnouncementCallback!.nativeFunction, ffi.nullptr);
 
-      XIMU3_Result result = api.XIMU3_network_announcement_get_result(networkAnnouncementPointer);
+      XIMU3_Result result = API.api.XIMU3_network_announcement_get_result(networkAnnouncementPointer);
 
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (result == XIMU3_Result.XIMU3_ResultError) {
@@ -365,7 +363,7 @@ class ConnectionsAPI extends API {
 
   void removeNetworkAnnouncementCallback(
       {required int callbackId, required Pointer<XIMU3_NetworkAnnouncement> pointer}) {
-    api.XIMU3_network_announcement_remove_callback(pointer, callbackId);
+    API.api.XIMU3_network_announcement_remove_callback(pointer, callbackId);
   }
 
   Future<List<Connection?>> getMessagesAfterShortDelayAsync(
@@ -414,7 +412,7 @@ class ConnectionsAPI extends API {
     }
 
     XIMU3_NetworkAnnouncementMessages messages =
-        api.XIMU3_network_announcement_get_messages_after_short_delay(networkAnnouncementPointer);
+        API.api.XIMU3_network_announcement_get_messages_after_short_delay(networkAnnouncementPointer);
 
     List<Connection> connections = [];
 
