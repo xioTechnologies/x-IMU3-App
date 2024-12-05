@@ -44,8 +44,6 @@ class Connection {
   Callback<XIMU3_RssiMessage>? rssiCallback;
   Callback<XIMU3_SerialAccessoryMessage>? serialAccessoryCallback;
 
-  static NativeLibrary get api => API.api;
-
   Connection({
     required this.device,
     this.connectionType,
@@ -130,7 +128,7 @@ class Connection {
 
     _permanentStatisticsStreamController = StreamController<String>.broadcast();
 
-    int callbackId = api.XIMU3_connection_add_statistics_callback(
+    int callbackId = API.api.XIMU3_connection_add_statistics_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_Statistics data,
@@ -149,7 +147,7 @@ class Connection {
 
     _permanentBatteryStreamController = StreamController<BatteryStatus>.broadcast();
 
-    int callbackId = api.XIMU3_connection_add_battery_callback(
+    int callbackId = API.api.XIMU3_connection_add_battery_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_BatteryMessage data,
@@ -168,7 +166,7 @@ class Connection {
 
     _permanentRssiStreamController = StreamController<RssiStatus>.broadcast();
 
-    int callbackId = api.XIMU3_connection_add_rssi_callback(
+    int callbackId = API.api.XIMU3_connection_add_rssi_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_RssiMessage data,
@@ -187,7 +185,7 @@ class Connection {
 
     _permanentErrorStreamController = StreamController<String>.broadcast();
 
-    int callbackId = api.XIMU3_connection_add_error_callback(
+    int callbackId = API.api.XIMU3_connection_add_error_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_ErrorMessage data,
@@ -210,7 +208,7 @@ class Connection {
 
     var streamController = StreamController<List<XIMU3_Statistics>>.broadcast();
 
-    var callbackId = api.XIMU3_connection_add_statistics_callback(
+    var callbackId = API.api.XIMU3_connection_add_statistics_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_Statistics data,
@@ -241,7 +239,7 @@ class Connection {
 
     var streamController = StreamController<List<XIMU3_InertialMessage>>.broadcast();
 
-    var callbackId = api.XIMU3_connection_add_inertial_callback(
+    var callbackId = API.api.XIMU3_connection_add_inertial_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_InertialMessage data,
@@ -273,7 +271,7 @@ class Connection {
 
     var streamController = StreamController<List<XIMU3_MagnetometerMessage>>.broadcast();
 
-    var callbackId = api.XIMU3_connection_add_magnetometer_callback(
+    var callbackId = API.api.XIMU3_connection_add_magnetometer_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_MagnetometerMessage data,
@@ -304,7 +302,7 @@ class Connection {
 
     var streamController = StreamController<List<XIMU3_QuaternionMessage>>.broadcast();
 
-    var callbackId = api.XIMU3_connection_add_quaternion_callback(
+    var callbackId = API.api.XIMU3_connection_add_quaternion_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_QuaternionMessage data,
@@ -335,7 +333,7 @@ class Connection {
 
     var streamController = StreamController<List<XIMU3_RotationMatrixMessage>>.broadcast();
 
-    var callbackId = api.XIMU3_connection_add_rotation_matrix_callback(
+    var callbackId = API.api.XIMU3_connection_add_rotation_matrix_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_RotationMatrixMessage data,
@@ -366,7 +364,7 @@ class Connection {
 
     var streamController = StreamController<List<XIMU3_EulerAnglesMessage>>.broadcast();
 
-    var callbackId = api.XIMU3_connection_add_euler_angles_callback(
+    var callbackId = API.api.XIMU3_connection_add_euler_angles_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_EulerAnglesMessage data,
@@ -397,7 +395,7 @@ class Connection {
 
     var streamController = StreamController<List<XIMU3_LinearAccelerationMessage>>.broadcast();
 
-    var callbackId = api.XIMU3_connection_add_linear_acceleration_callback(
+    var callbackId = API.api.XIMU3_connection_add_linear_acceleration_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_LinearAccelerationMessage data,
@@ -428,7 +426,7 @@ class Connection {
 
     var streamController = StreamController<List<XIMU3_EarthAccelerationMessage>>.broadcast();
 
-    var callbackId = api.XIMU3_connection_add_earth_acceleration_callback(
+    var callbackId = API.api.XIMU3_connection_add_earth_acceleration_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_EarthAccelerationMessage data,
@@ -459,7 +457,7 @@ class Connection {
 
     var streamController = StreamController<List<XIMU3_HighGAccelerometerMessage>>.broadcast();
 
-    var callbackId = api.XIMU3_connection_add_high_g_accelerometer_callback(
+    var callbackId = API.api.XIMU3_connection_add_high_g_accelerometer_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_HighGAccelerometerMessage data,
@@ -490,7 +488,7 @@ class Connection {
 
     var streamController = StreamController<List<XIMU3_TemperatureMessage>>.broadcast();
 
-    var callbackId = api.XIMU3_connection_add_temperature_callback(
+    var callbackId = API.api.XIMU3_connection_add_temperature_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_TemperatureMessage data,
@@ -521,7 +519,7 @@ class Connection {
 
     var streamController = StreamController<List<XIMU3_BatteryMessage>>.broadcast();
 
-    var callbackId = api.XIMU3_connection_add_battery_callback(
+    var callbackId = API.api.XIMU3_connection_add_battery_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_BatteryMessage data,
@@ -552,7 +550,7 @@ class Connection {
 
     var streamController = StreamController<List<XIMU3_RssiMessage>>.broadcast();
 
-    var callbackId = api.XIMU3_connection_add_rssi_callback(
+    var callbackId = API.api.XIMU3_connection_add_rssi_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_RssiMessage data,
@@ -583,7 +581,7 @@ class Connection {
 
     var streamController = StreamController<List<XIMU3_SerialAccessoryMessage>>.broadcast();
 
-    var callbackId = api.XIMU3_connection_add_serial_accessory_callback(
+    var callbackId = API.api.XIMU3_connection_add_serial_accessory_callback(
       connectionPointer!,
       NativeCallable<
               ffi.Void Function(XIMU3_SerialAccessoryMessage data,
@@ -757,7 +755,7 @@ class Connection {
 
     quaternionCallback?.streamController.stream.listen((dataList) {
       var list = dataList
-          .map((data) => api.XIMU3_quaternion_message_to_euler_angles_message(data))
+          .map((data) => API.api.XIMU3_quaternion_message_to_euler_angles_message(data))
           .toList();
 
       if (list.isNotEmpty) {
@@ -767,7 +765,7 @@ class Connection {
 
     rotationMatrixCallback?.streamController.stream.listen((dataList) {
       var list = dataList
-          .map((data) => api.XIMU3_rotation_matrix_message_to_euler_angles_message(data))
+          .map((data) => API.api.XIMU3_rotation_matrix_message_to_euler_angles_message(data))
           .toList();
 
       if (list.isNotEmpty) {
@@ -777,7 +775,7 @@ class Connection {
 
     linearAccelerationCallback?.streamController.stream.listen((dataList) {
       var list = dataList
-          .map((data) => api.XIMU3_linear_acceleration_message_to_euler_angles_message(data))
+          .map((data) => API.api.XIMU3_linear_acceleration_message_to_euler_angles_message(data))
           .toList();
 
       if (list.isNotEmpty) {
@@ -787,7 +785,7 @@ class Connection {
 
     earthAccelerationCallback?.streamController.stream.listen((dataList) {
       var list = dataList
-          .map((data) => api.XIMU3_earth_acceleration_message_to_euler_angles_message(data))
+          .map((data) => API.api.XIMU3_earth_acceleration_message_to_euler_angles_message(data))
           .toList();
 
       if (list.isNotEmpty) {

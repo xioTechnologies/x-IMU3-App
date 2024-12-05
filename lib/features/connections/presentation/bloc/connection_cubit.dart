@@ -31,8 +31,6 @@ class ConnectionCubit extends Cubit<ConnectionsState> {
   final ValueNotifier<List<Connection>> _activeConnections = ValueNotifier([]);
   Connection? _selectedConnection;
 
-  static NativeLibrary get api => API.api;
-
   selectConnection(Connection? connection) {
     _selectedConnection = connection;
   }
@@ -134,7 +132,7 @@ class ConnectionCubit extends Cubit<ConnectionsState> {
         connection.addPermanentRssiCallback();
         connection.addPermanentErrorCallback();
 
-        api.XIMU3_connection_ping(connectionPointer!);
+        API.api.XIMU3_connection_ping(connectionPointer!);
 
         activeConnections.add(connection);
         activeConnectionsNotifier.notifyListeners();
@@ -171,7 +169,7 @@ class ConnectionCubit extends Cubit<ConnectionsState> {
           connection.addPermanentRssiCallback();
           connection.addPermanentErrorCallback();
 
-          api.XIMU3_connection_ping(connectionPointer!);
+          API.api.XIMU3_connection_ping(connectionPointer!);
 
           activeConnections.add(connection);
           activeConnectionsNotifier.notifyListeners();
@@ -263,7 +261,7 @@ class ConnectionCubit extends Cubit<ConnectionsState> {
 
   removeCallback<T>(Callback? callback, Connection connection) {
     if (callback != null && callback.callbackId != null) {
-      api.XIMU3_connection_remove_callback(
+      API.api.XIMU3_connection_remove_callback(
         connection.connectionPointer!,
         callback.callbackId!,
       );
