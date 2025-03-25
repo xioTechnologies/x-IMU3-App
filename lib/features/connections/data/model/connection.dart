@@ -17,8 +17,6 @@ import 'callback.dart';
 import 'connection_info.dart';
 
 class Connection {
-  final DateTime _startTime = DateTime.now();
-
   Device device;
   ConnectionInfo? connectionInfo;
   Color? color;
@@ -59,19 +57,9 @@ class Connection {
     if (callback != null && !(callback.streamController.isClosed)) {
       callback.data.add(data);
 
-      var currentMicroseconds = DateTime.now().difference(_startTime).inMicroseconds;
-
-      callback.data.removeWhere((datapoint) {
-        var dynamicData = datapoint as dynamic;
-
-        if (dynamicData?.timestamp is int) {
-          var ageMicroseconds = currentMicroseconds - dynamicData.timestamp;
-
-          return ageMicroseconds > 30 * 1000000;
-        }
-        return false;
-      });
-
+      if (callback.data.length > 1000) {
+        callback.data.removeRange(0, callback.data.length - 1000);
+      }
       callback.streamController.add(List<T>.from(callback.data));
     }
   }

@@ -422,61 +422,66 @@ class ConnectionsAPI extends API {
       return [];
     }
 
-    var message = messages.array.elementAt(0).ref;
+    for (int i = 0; i < messages.length; i++) {
+      var message = messages.array.elementAt(i).ref;
 
-    var tcpConnectionInfo = _instance.networkAnnouncementToTCPConnectionInfo(message);
-    var udpConnectionInfo = _instance.networkAnnouncementToUDPConnectionInfo(message);
+      var tcpConnectionInfo = _instance.networkAnnouncementToTCPConnectionInfo(message);
+      var udpConnectionInfo = _instance.networkAnnouncementToUDPConnectionInfo(message);
 
-    var device = Device(
-      name: FFIHelpers.convertCharArrayToString(message.device_name),
-      serialNumber: FFIHelpers.convertCharArrayToString(message.serial_number),
-    );
-
-    var batteryStatus = BatteryStatus(
-      status: message.charging_status.index.toDouble(),
-      percentage: message.battery.toDouble(),
-      timestamp: DateTime.now().millisecondsSinceEpoch,
-    );
-
-    var rssiStatus = RssiStatus(
-      percentage: message.rssi.toDouble(),
-      power: 0,
-      timestamp: DateTime.now().millisecondsSinceEpoch,
-    );
-
-    if (tcpConnectionInfo != null) {
-      connections.add(
-        Connection(
-          device: device,
-          connectionType: XIMU3_ConnectionType.XIMU3_ConnectionTypeTcp,
-          connectionInfo: TCPConnectionInfo(
-            batteryStatus: batteryStatus,
-            rssiStatus: rssiStatus,
-            ipAddress: FFIHelpers.convertCharArrayToString(tcpConnectionInfo.ip_address),
-            port: tcpConnectionInfo.port,
-            label: ConnectionsAPI.instance.tcpConnectionInfo(tcpConnectionInfo),
-          ),
-        ),
+      var device = Device(
+        name: FFIHelpers.convertCharArrayToString(message.device_name),
+        serialNumber: FFIHelpers.convertCharArrayToString(message.serial_number),
       );
-    }
 
-    if (udpConnectionInfo != null) {
-      connections.add(
-        Connection(
-          device: device,
-          connectionInfo: UDPConnectionInfo(
-            batteryStatus: batteryStatus,
-            rssiStatus: rssiStatus,
-            ipAddress: FFIHelpers.convertCharArrayToString(udpConnectionInfo.ip_address),
-            sendPort: message.udp_send,
-            receivePort: message.udp_receive,
-            label: ConnectionsAPI.instance.udpConnectionInfo(udpConnectionInfo),
-          ),
-          connectionType: XIMU3_ConnectionType.XIMU3_ConnectionTypeUdp,
-        ),
+      var batteryStatus = BatteryStatus(
+        status: message.charging_status.index.toDouble(),
+        percentage: message.battery.toDouble(),
+        timestamp: DateTime
+            .now()
+            .millisecondsSinceEpoch,
       );
-    }
 
+      var rssiStatus = RssiStatus(
+        percentage: message.rssi.toDouble(),
+        power: 0,
+        timestamp: DateTime
+            .now()
+            .millisecondsSinceEpoch,
+      );
+
+      if (tcpConnectionInfo != null) {
+        connections.add(
+          Connection(
+            device: device,
+            connectionType: XIMU3_ConnectionType.XIMU3_ConnectionTypeTcp,
+            connectionInfo: TCPConnectionInfo(
+              batteryStatus: batteryStatus,
+              rssiStatus: rssiStatus,
+              ipAddress: FFIHelpers.convertCharArrayToString(tcpConnectionInfo.ip_address),
+              port: tcpConnectionInfo.port,
+              label: ConnectionsAPI.instance.tcpConnectionInfo(tcpConnectionInfo),
+            ),
+          ),
+        );
+      }
+
+      if (udpConnectionInfo != null) {
+        connections.add(
+          Connection(
+            device: device,
+            connectionInfo: UDPConnectionInfo(
+              batteryStatus: batteryStatus,
+              rssiStatus: rssiStatus,
+              ipAddress: FFIHelpers.convertCharArrayToString(udpConnectionInfo.ip_address),
+              sendPort: message.udp_send,
+              receivePort: message.udp_receive,
+              label: ConnectionsAPI.instance.udpConnectionInfo(udpConnectionInfo),
+            ),
+            connectionType: XIMU3_ConnectionType.XIMU3_ConnectionTypeUdp,
+          ),
+        );
+      }
+    }
     return connections;
   }
 }
