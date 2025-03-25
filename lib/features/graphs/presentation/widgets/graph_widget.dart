@@ -111,7 +111,7 @@ class _GraphWidgetState extends State<GraphWidget> {
                           child: AppText(text: Strings.noData, color: Palette.unselected),
                         ),
                       )
-                    : LineChart(widget.data!),
+                    : LineChart(widget.data!, duration: Duration.zero),
               ),
             ),
           ),
