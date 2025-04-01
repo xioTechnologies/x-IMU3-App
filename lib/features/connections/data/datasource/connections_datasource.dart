@@ -99,20 +99,14 @@ class ConnectionsAPI {
     return connections;
   }
 
-  XIMU3_TcpConnectionInfo? networkAnnouncementToTCPConnectionInfo(
-      XIMU3_NetworkAnnouncementMessage? message) {
-    if (message != null) {
+  XIMU3_TcpConnectionInfo networkAnnouncementToTCPConnectionInfo(
+      XIMU3_NetworkAnnouncementMessage message) {
       return API.api.XIMU3_network_announcement_message_to_tcp_connection_info(message);
-    }
-    return null;
   }
 
-  XIMU3_UdpConnectionInfo? networkAnnouncementToUDPConnectionInfo(
-      XIMU3_NetworkAnnouncementMessage? message) {
-    if (message != null) {
-      return API.api.XIMU3_network_announcement_message_to_udp_connection_info(message);
-    }
-    return null;
+  XIMU3_UdpConnectionInfo networkAnnouncementToUDPConnectionInfo(
+      XIMU3_NetworkAnnouncementMessage message) {
+    return API.api.XIMU3_network_announcement_message_to_udp_connection_info(message);
   }
 
   String usbConnectionInfo(XIMU3_UsbConnectionInfo? connectionInfo) {
@@ -416,33 +410,29 @@ class ConnectionsAPI {
 
     List<Connection> connections = [];
 
-    if (messages.length == 0) {
-      return [];
-    }
+    for (int index = 0; index < messages.length; index++) {
+      var message = messages.array.elementAt(index).ref;
 
-    var message = messages.array.elementAt(0).ref;
+      var tcpConnectionInfo = _instance.networkAnnouncementToTCPConnectionInfo(message);
+      var udpConnectionInfo = _instance.networkAnnouncementToUDPConnectionInfo(message);
 
-    var tcpConnectionInfo = _instance.networkAnnouncementToTCPConnectionInfo(message);
-    var udpConnectionInfo = _instance.networkAnnouncementToUDPConnectionInfo(message);
+      var device = Device(
+        name: FFIHelpers.convertCharArrayToString(message.device_name),
+        serialNumber: FFIHelpers.convertCharArrayToString(message.serial_number),
+      );
 
-    var device = Device(
-      name: FFIHelpers.convertCharArrayToString(message.device_name),
-      serialNumber: FFIHelpers.convertCharArrayToString(message.serial_number),
-    );
+      var batteryStatus = BatteryStatus(
+        status: message.charging_status.index.toDouble(),
+        percentage: message.battery.toDouble(),
+        timestamp: DateTime.now().millisecondsSinceEpoch,
+      );
 
-    var batteryStatus = BatteryStatus(
-      status: message.charging_status.index.toDouble(),
-      percentage: message.battery.toDouble(),
-      timestamp: DateTime.now().millisecondsSinceEpoch,
-    );
+      var rssiStatus = RssiStatus(
+        percentage: message.rssi.toDouble(),
+        power: 0,
+        timestamp: DateTime.now().millisecondsSinceEpoch,
+      );
 
-    var rssiStatus = RssiStatus(
-      percentage: message.rssi.toDouble(),
-      power: 0,
-      timestamp: DateTime.now().millisecondsSinceEpoch,
-    );
-
-    if (tcpConnectionInfo != null) {
       connections.add(
         Connection(
           device: device,
@@ -456,9 +446,7 @@ class ConnectionsAPI {
           ),
         ),
       );
-    }
 
-    if (udpConnectionInfo != null) {
       connections.add(
         Connection(
           device: device,
