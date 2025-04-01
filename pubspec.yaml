@@ -35,22 +35,22 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  flutter_bloc: ^8.1.1
+  flutter_bloc: ^9.1.0
   fpdart: ^1.1.0
   path: ^1.8.3
   get_it: ^8.0.2
-  auto_route: ^9.2.0
+  auto_route: ^10.0.1
   shared_preferences: ^2.0.15
   flutter_native_splash: ^2.2.12
   intl: ^0.20.0
   equatable: ^2.0.5
-  flutter_slidable: ^3.0.1
-  device_info_plus: ^10.1.0
-  fl_chart: ^0.69.0
+  flutter_slidable: ^4.0.0
+  device_info_plus: ^11.3.0
+  fl_chart: ^0.70.2
   share_plus: ^10.0.0
   path_provider: ^2.1.1
   ffi: ^2.1.0
-  archive: ^3.4.10
+  archive: ^4.0.5
   collection: ^1.17.0
   xml: ^6.3.0
   flutter_svg:
@@ -58,7 +58,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  auto_route_generator: ^9.0.0
+  auto_route_generator: ^10.0.1
   build_runner: ^2.4.6
   flutter_launcher_icons: ^0.14.1
 
@@ -67,13 +67,13 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
-  ffigen: ^15.0.0
+  ffigen: ^18.0.0
 
 flutter_icons:
   android: "launcher_icon"

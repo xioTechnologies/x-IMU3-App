@@ -3964,6 +3964,32 @@ class NativeLibrary {
       .asFunction<ffi.Pointer<ffi.Char> Function(XIMU3_Statistics)>();
 }
 
+typedef __builtin_va_list = ffi.Pointer<ffi.Char>;
+typedef va_list = __builtin_va_list;
+typedef __gnuc_va_list = __builtin_va_list;
+typedef __int8_t = ffi.SignedChar;
+typedef Dart__int8_t = int;
+typedef __uint8_t = ffi.UnsignedChar;
+typedef Dart__uint8_t = int;
+typedef __int16_t = ffi.Short;
+typedef Dart__int16_t = int;
+typedef __uint16_t = ffi.UnsignedShort;
+typedef Dart__uint16_t = int;
+typedef __int32_t = ffi.Int;
+typedef Dart__int32_t = int;
+typedef __uint32_t = ffi.UnsignedInt;
+typedef Dart__uint32_t = int;
+typedef __int64_t = ffi.LongLong;
+typedef Dart__int64_t = int;
+typedef __uint64_t = ffi.UnsignedLongLong;
+typedef Dart__uint64_t = int;
+typedef __darwin_intptr_t = ffi.Long;
+typedef Dart__darwin_intptr_t = int;
+typedef __darwin_natural_t = ffi.UnsignedInt;
+typedef Dart__darwin_natural_t = int;
+typedef __darwin_ct_rune_t = ffi.Int;
+typedef Dart__darwin_ct_rune_t = int;
+
 final class __mbstate_t extends ffi.Union {
   @ffi.Array.multi([128])
   external ffi.Array<ffi.Char> __mbstate8;
@@ -3971,6 +3997,124 @@ final class __mbstate_t extends ffi.Union {
   @ffi.LongLong()
   external int _mbstateL;
 }
+
+typedef __darwin_mbstate_t = __mbstate_t;
+typedef __darwin_ptrdiff_t = ffi.Long;
+typedef Dart__darwin_ptrdiff_t = int;
+typedef __darwin_size_t = ffi.UnsignedLong;
+typedef Dart__darwin_size_t = int;
+typedef __darwin_va_list = __builtin_va_list;
+typedef __darwin_wchar_t = ffi.Int;
+typedef Dart__darwin_wchar_t = int;
+typedef __darwin_rune_t = __darwin_wchar_t;
+typedef __darwin_wint_t = ffi.Int;
+typedef Dart__darwin_wint_t = int;
+typedef __darwin_clock_t = ffi.UnsignedLong;
+typedef Dart__darwin_clock_t = int;
+typedef __darwin_socklen_t = __uint32_t;
+typedef __darwin_ssize_t = ffi.Long;
+typedef Dart__darwin_ssize_t = int;
+typedef __darwin_time_t = ffi.Long;
+typedef Dart__darwin_time_t = int;
+typedef u_int8_t = ffi.UnsignedChar;
+typedef Dartu_int8_t = int;
+typedef u_int16_t = ffi.UnsignedShort;
+typedef Dartu_int16_t = int;
+typedef u_int32_t = ffi.UnsignedInt;
+typedef Dartu_int32_t = int;
+typedef u_int64_t = ffi.UnsignedLongLong;
+typedef Dartu_int64_t = int;
+typedef register_t = ffi.Int64;
+typedef Dartregister_t = int;
+typedef user_addr_t = u_int64_t;
+typedef user_size_t = u_int64_t;
+typedef user_ssize_t = ffi.Int64;
+typedef Dartuser_ssize_t = int;
+typedef user_long_t = ffi.Int64;
+typedef Dartuser_long_t = int;
+typedef user_ulong_t = u_int64_t;
+typedef user_time_t = ffi.Int64;
+typedef Dartuser_time_t = int;
+typedef user_off_t = ffi.Int64;
+typedef Dartuser_off_t = int;
+typedef user_addr_ut = user_addr_t;
+typedef user_size_ut = user_size_t;
+typedef user64_addr_t = __uint64_t;
+typedef user64_size_t = __uint64_t;
+typedef user64_ssize_t = __int64_t;
+typedef user64_long_t = __int64_t;
+typedef user64_ulong_t = __uint64_t;
+typedef user64_time_t = __int64_t;
+typedef user64_off_t = __int64_t;
+typedef user32_addr_t = __uint32_t;
+typedef user32_size_t = __uint32_t;
+typedef user32_ssize_t = __int32_t;
+typedef user32_long_t = __int32_t;
+typedef user32_ulong_t = __uint32_t;
+typedef user32_time_t = __int32_t;
+typedef user32_off_t = __int64_t;
+typedef syscall_arg_t = u_int64_t;
+typedef int_least8_t = ffi.Int8;
+typedef Dartint_least8_t = int;
+typedef int_least16_t = ffi.Int16;
+typedef Dartint_least16_t = int;
+typedef int_least32_t = ffi.Int32;
+typedef Dartint_least32_t = int;
+typedef int_least64_t = ffi.Int64;
+typedef Dartint_least64_t = int;
+typedef uint_least8_t = ffi.Uint8;
+typedef Dartuint_least8_t = int;
+typedef uint_least16_t = ffi.Uint16;
+typedef Dartuint_least16_t = int;
+typedef uint_least32_t = ffi.Uint32;
+typedef Dartuint_least32_t = int;
+typedef uint_least64_t = ffi.Uint64;
+typedef Dartuint_least64_t = int;
+typedef int_fast8_t = ffi.Int8;
+typedef Dartint_fast8_t = int;
+typedef int_fast16_t = ffi.Int16;
+typedef Dartint_fast16_t = int;
+typedef int_fast32_t = ffi.Int32;
+typedef Dartint_fast32_t = int;
+typedef int_fast64_t = ffi.Int64;
+typedef Dartint_fast64_t = int;
+typedef uint_fast8_t = ffi.Uint8;
+typedef Dartuint_fast8_t = int;
+typedef uint_fast16_t = ffi.Uint16;
+typedef Dartuint_fast16_t = int;
+typedef uint_fast32_t = ffi.Uint32;
+typedef Dartuint_fast32_t = int;
+typedef uint_fast64_t = ffi.Uint64;
+typedef Dartuint_fast64_t = int;
+typedef intmax_t = ffi.Long;
+typedef Dartintmax_t = int;
+typedef uintmax_t = ffi.UnsignedLong;
+typedef Dartuintmax_t = int;
+typedef __darwin_blkcnt_t = __int64_t;
+typedef __darwin_blksize_t = __int32_t;
+typedef __darwin_dev_t = __int32_t;
+typedef __darwin_fsblkcnt_t = ffi.UnsignedInt;
+typedef Dart__darwin_fsblkcnt_t = int;
+typedef __darwin_fsfilcnt_t = ffi.UnsignedInt;
+typedef Dart__darwin_fsfilcnt_t = int;
+typedef __darwin_gid_t = __uint32_t;
+typedef __darwin_id_t = __uint32_t;
+typedef __darwin_ino64_t = __uint64_t;
+typedef __darwin_ino_t = __uint32_t;
+typedef __darwin_mach_port_name_t = __darwin_natural_t;
+typedef __darwin_mach_port_t = __darwin_mach_port_name_t;
+typedef __darwin_mode_t = __uint16_t;
+typedef __darwin_off_t = __int64_t;
+typedef __darwin_pid_t = __int32_t;
+typedef __darwin_sigset_t = __uint32_t;
+typedef __darwin_suseconds_t = __int32_t;
+typedef __darwin_uid_t = __uint32_t;
+typedef __darwin_useconds_t = __uint32_t;
+typedef __darwin_nl_item = ffi.Int;
+typedef Dart__darwin_nl_item = int;
+typedef __darwin_wctrans_t = ffi.Int;
+typedef Dart__darwin_wctrans_t = int;
+typedef __darwin_wctype_t = __uint32_t;
 
 enum idtype_t {
   P_ALL(0),
@@ -3984,9 +4128,14 @@ enum idtype_t {
         0 => P_ALL,
         1 => P_PID,
         2 => P_PGID,
-        _ => throw ArgumentError("Unknown value for idtype_t: $value"),
+        _ => throw ArgumentError('Unknown value for idtype_t: $value'),
       };
 }
+
+typedef pid_t = __darwin_pid_t;
+typedef id_t = __darwin_id_t;
+typedef sig_atomic_t = ffi.Int;
+typedef Dartsig_atomic_t = int;
 
 final class arm_exception_state extends ffi.Struct {
   @__uint32_t()
@@ -3999,9 +4148,6 @@ final class arm_exception_state extends ffi.Struct {
   external int far;
 }
 
-typedef __uint32_t = ffi.UnsignedInt;
-typedef Dart__uint32_t = int;
-
 final class arm_exception_state64 extends ffi.Struct {
   @__uint64_t()
   external int far;
@@ -4012,9 +4158,6 @@ final class arm_exception_state64 extends ffi.Struct {
   @__uint32_t()
   external int exception;
 }
-
-typedef __uint64_t = ffi.UnsignedLongLong;
-typedef Dart__uint64_t = int;
 
 final class arm_exception_state64_v2 extends ffi.Struct {
   @__uint64_t()
@@ -4144,6 +4287,8 @@ final class mcontext32 extends ffi.Struct {
 
 final class mcontext64 extends ffi.Opaque {}
 
+typedef mcontext_t = ffi.Pointer<mcontext64>;
+
 final class sigaltstack extends ffi.Struct {
   external ffi.Pointer<ffi.Void> ss_sp;
 
@@ -4154,8 +4299,7 @@ final class sigaltstack extends ffi.Struct {
   external int ss_flags;
 }
 
-typedef __darwin_size_t = ffi.UnsignedLong;
-typedef Dart__darwin_size_t = int;
+typedef stack_t = sigaltstack;
 
 final class ucontext extends ffi.Struct {
   @ffi.Int()
@@ -4174,7 +4318,9 @@ final class ucontext extends ffi.Struct {
   external ffi.Pointer<mcontext64> uc_mcontext;
 }
 
-typedef __darwin_sigset_t = __uint32_t;
+typedef ucontext_t = ucontext;
+typedef sigset_t = __darwin_sigset_t;
+typedef uid_t = __darwin_uid_t;
 
 final class sigval extends ffi.Union {
   @ffi.Int()
@@ -4213,12 +4359,7 @@ final class __siginfo extends ffi.Struct {
   external ffi.Array<ffi.UnsignedLong> __pad;
 }
 
-typedef pid_t = __darwin_pid_t;
-typedef __darwin_pid_t = __int32_t;
-typedef __int32_t = ffi.Int;
-typedef Dart__int32_t = int;
-typedef uid_t = __darwin_uid_t;
-typedef __darwin_uid_t = __uint32_t;
+typedef siginfo_t = __siginfo;
 
 final class __sigaction_u extends ffi.Union {
   external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>
@@ -4232,7 +4373,7 @@ final class __sigaction_u extends ffi.Union {
 }
 
 final class __sigaction extends ffi.Struct {
-  external __sigaction_u __sigaction_u1;
+  external __sigaction_u __sigaction_u$1;
 
   external ffi.Pointer<
       ffi.NativeFunction<
@@ -4246,11 +4387,8 @@ final class __sigaction extends ffi.Struct {
   external int sa_flags;
 }
 
-typedef siginfo_t = __siginfo;
-typedef sigset_t = __darwin_sigset_t;
-
 final class sigaction extends ffi.Struct {
-  external __sigaction_u __sigaction_u1;
+  external __sigaction_u __sigaction_u$1;
 
   @sigset_t()
   external int sa_mask;
@@ -4258,6 +4396,10 @@ final class sigaction extends ffi.Struct {
   @ffi.Int()
   external int sa_flags;
 }
+
+typedef sig_tFunction = ffi.Void Function(ffi.Int);
+typedef Dartsig_tFunction = void Function(int);
+typedef sig_t = ffi.Pointer<ffi.NativeFunction<sig_tFunction>>;
 
 final class sigvec extends ffi.Struct {
   external ffi.Pointer<ffi.NativeFunction<ffi.Void Function(ffi.Int)>>
@@ -4285,10 +4427,6 @@ final class timeval extends ffi.Struct {
   external int tv_usec;
 }
 
-typedef __darwin_time_t = ffi.Long;
-typedef Dart__darwin_time_t = int;
-typedef __darwin_suseconds_t = __int32_t;
-
 final class user32_timeval extends ffi.Struct {
   @user32_time_t()
   external int tv_sec;
@@ -4296,8 +4434,6 @@ final class user32_timeval extends ffi.Struct {
   @__int32_t()
   external int tv_usec;
 }
-
-typedef user32_time_t = __int32_t;
 
 final class user64_timeval extends ffi.Struct {
   @user64_time_t()
@@ -4307,9 +4443,7 @@ final class user64_timeval extends ffi.Struct {
   external int tv_usec;
 }
 
-typedef user64_time_t = __int64_t;
-typedef __int64_t = ffi.LongLong;
-typedef Dart__int64_t = int;
+typedef rlim_t = __uint64_t;
 
 final class rusage extends ffi.Struct {
   external timeval ru_utime;
@@ -4358,6 +4492,8 @@ final class rusage extends ffi.Struct {
   @ffi.Long()
   external int ru_nivcsw;
 }
+
+typedef rusage_info_t = ffi.Pointer<ffi.Void>;
 
 final class rusage_info_v0 extends ffi.Struct {
   @ffi.Array.multi([16])
@@ -4964,13 +5100,13 @@ final class rusage_info_v6 extends ffi.Struct {
   external ffi.Array<ffi.Uint64> ri_reserved;
 }
 
+typedef rusage_info_current = rusage_info_v6;
+
 final class rusage_superset extends ffi.Struct {
   external rusage ru;
 
   external rusage_info_current ri;
 }
-
-typedef rusage_info_current = rusage_info_v6;
 
 final class rusage_info_child extends ffi.Struct {
   @ffi.Uint64()
@@ -5040,8 +5176,6 @@ final class user64_rusage extends ffi.Struct {
   external int ru_nivcsw;
 }
 
-typedef user64_long_t = __int64_t;
-
 final class user32_rusage extends ffi.Struct {
   external user32_timeval ru_utime;
 
@@ -5090,8 +5224,6 @@ final class user32_rusage extends ffi.Struct {
   external int ru_nivcsw;
 }
 
-typedef user32_long_t = __int32_t;
-
 final class rlimit extends ffi.Struct {
   @rlim_t()
   external int rlim_cur;
@@ -5099,8 +5231,6 @@ final class rlimit extends ffi.Struct {
   @rlim_t()
   external int rlim_max;
 }
-
-typedef rlim_t = __uint64_t;
 
 final class proc_rlimit_control_wakeupmon extends ffi.Struct {
   @ffi.Uint32()
@@ -5111,6 +5241,9 @@ final class proc_rlimit_control_wakeupmon extends ffi.Struct {
 }
 
 final class wait extends ffi.Opaque {}
+
+typedef ct_rune_t = __darwin_ct_rune_t;
+typedef rune_t = __darwin_rune_t;
 
 final class div_t extends ffi.Struct {
   @ffi.Int()
@@ -5143,11 +5276,7 @@ final class _malloc_zone_t extends ffi.Opaque {}
 
 typedef malloc_zone_t = _malloc_zone_t;
 typedef dev_t = __darwin_dev_t;
-typedef __darwin_dev_t = __int32_t;
 typedef mode_t = __darwin_mode_t;
-typedef __darwin_mode_t = __uint16_t;
-typedef __uint16_t = ffi.UnsignedShort;
-typedef Dart__uint16_t = int;
 
 enum XIMU3_ChargingStatus {
   XIMU3_ChargingStatusNotConnected(0),
@@ -5162,7 +5291,7 @@ enum XIMU3_ChargingStatus {
         1 => XIMU3_ChargingStatusCharging,
         2 => XIMU3_ChargingStatusChargingComplete,
         _ =>
-          throw ArgumentError("Unknown value for XIMU3_ChargingStatus: $value"),
+          throw ArgumentError('Unknown value for XIMU3_ChargingStatus: $value'),
       };
 }
 
@@ -5185,7 +5314,7 @@ enum XIMU3_ConnectionType {
         4 => XIMU3_ConnectionTypeBluetooth,
         5 => XIMU3_ConnectionTypeFile,
         _ =>
-          throw ArgumentError("Unknown value for XIMU3_ConnectionType: $value"),
+          throw ArgumentError('Unknown value for XIMU3_ConnectionType: $value'),
       };
 }
 
@@ -5213,7 +5342,7 @@ enum XIMU3_DecodeError {
         6 => XIMU3_DecodeErrorInvalidEscapeSequence,
         7 => XIMU3_DecodeErrorInvalidBinaryMessageLength,
         8 => XIMU3_DecodeErrorUnableToParseAsciiMessage,
-        _ => throw ArgumentError("Unknown value for XIMU3_DecodeError: $value"),
+        _ => throw ArgumentError('Unknown value for XIMU3_DecodeError: $value'),
       };
 }
 
@@ -5230,7 +5359,7 @@ enum XIMU3_FileConverterStatus {
         1 => XIMU3_FileConverterStatusFailed,
         2 => XIMU3_FileConverterStatusInProgress,
         _ => throw ArgumentError(
-            "Unknown value for XIMU3_FileConverterStatus: $value"),
+            'Unknown value for XIMU3_FileConverterStatus: $value'),
       };
 }
 
@@ -5244,7 +5373,7 @@ enum XIMU3_Result {
   static XIMU3_Result fromValue(int value) => switch (value) {
         0 => XIMU3_ResultOk,
         1 => XIMU3_ResultError,
-        _ => throw ArgumentError("Unknown value for XIMU3_Result: $value"),
+        _ => throw ArgumentError('Unknown value for XIMU3_Result: $value'),
       };
 }
 
@@ -5313,6 +5442,13 @@ final class XIMU3_FileConnectionInfo extends ffi.Struct {
   external ffi.Array<ffi.Char> file_path;
 }
 
+typedef XIMU3_CallbackResultFunction = ffi.Void Function(
+    ffi.UnsignedInt data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackResultFunction = void Function(
+    XIMU3_Result data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackResult
+    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackResultFunction>>;
+
 final class XIMU3_PingResponse extends ffi.Struct {
   @ffi.UnsignedInt()
   external int resultAsInt;
@@ -5320,7 +5456,7 @@ final class XIMU3_PingResponse extends ffi.Struct {
   XIMU3_Result get result => XIMU3_Result.fromValue(resultAsInt);
 
   @ffi.Array.multi([256])
-  external ffi.Array<ffi.Char> interface1;
+  external ffi.Array<ffi.Char> interface$;
 
   @ffi.Array.multi([256])
   external ffi.Array<ffi.Char> device_name;
@@ -5328,6 +5464,13 @@ final class XIMU3_PingResponse extends ffi.Struct {
   @ffi.Array.multi([256])
   external ffi.Array<ffi.Char> serial_number;
 }
+
+typedef XIMU3_CallbackCharArraysFunction = ffi.Void Function(
+    XIMU3_CharArrays data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackCharArraysFunction = void Function(
+    XIMU3_CharArrays data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackCharArrays
+    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackCharArraysFunction>>;
 
 final class XIMU3_Statistics extends ffi.Struct {
   @ffi.Uint64()
@@ -5352,6 +5495,19 @@ final class XIMU3_Statistics extends ffi.Struct {
   external int error_rate;
 }
 
+typedef XIMU3_CallbackDecodeErrorFunction = ffi.Void Function(
+    ffi.UnsignedInt data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackDecodeErrorFunction = void Function(
+    XIMU3_DecodeError data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackDecodeError
+    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackDecodeErrorFunction>>;
+typedef XIMU3_CallbackStatisticsFunction = ffi.Void Function(
+    XIMU3_Statistics data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackStatisticsFunction = void Function(
+    XIMU3_Statistics data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackStatistics
+    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackStatisticsFunction>>;
+
 final class XIMU3_InertialMessage extends ffi.Struct {
   @ffi.Uint64()
   external int timestamp;
@@ -5375,6 +5531,13 @@ final class XIMU3_InertialMessage extends ffi.Struct {
   external double accelerometer_z;
 }
 
+typedef XIMU3_CallbackInertialMessageFunction = ffi.Void Function(
+    XIMU3_InertialMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackInertialMessageFunction = void Function(
+    XIMU3_InertialMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackInertialMessage
+    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackInertialMessageFunction>>;
+
 final class XIMU3_MagnetometerMessage extends ffi.Struct {
   @ffi.Uint64()
   external int timestamp;
@@ -5388,6 +5551,13 @@ final class XIMU3_MagnetometerMessage extends ffi.Struct {
   @ffi.Float()
   external double z;
 }
+
+typedef XIMU3_CallbackMagnetometerMessageFunction = ffi.Void Function(
+    XIMU3_MagnetometerMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackMagnetometerMessageFunction = void Function(
+    XIMU3_MagnetometerMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackMagnetometerMessage = ffi
+    .Pointer<ffi.NativeFunction<XIMU3_CallbackMagnetometerMessageFunction>>;
 
 final class XIMU3_QuaternionMessage extends ffi.Struct {
   @ffi.Uint64()
@@ -5405,6 +5575,13 @@ final class XIMU3_QuaternionMessage extends ffi.Struct {
   @ffi.Float()
   external double z;
 }
+
+typedef XIMU3_CallbackQuaternionMessageFunction = ffi.Void Function(
+    XIMU3_QuaternionMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackQuaternionMessageFunction = void Function(
+    XIMU3_QuaternionMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackQuaternionMessage
+    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackQuaternionMessageFunction>>;
 
 final class XIMU3_RotationMatrixMessage extends ffi.Struct {
   @ffi.Uint64()
@@ -5438,6 +5615,13 @@ final class XIMU3_RotationMatrixMessage extends ffi.Struct {
   external double zz;
 }
 
+typedef XIMU3_CallbackRotationMatrixMessageFunction = ffi.Void Function(
+    XIMU3_RotationMatrixMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackRotationMatrixMessageFunction = void Function(
+    XIMU3_RotationMatrixMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackRotationMatrixMessage = ffi
+    .Pointer<ffi.NativeFunction<XIMU3_CallbackRotationMatrixMessageFunction>>;
+
 final class XIMU3_EulerAnglesMessage extends ffi.Struct {
   @ffi.Uint64()
   external int timestamp;
@@ -5451,6 +5635,13 @@ final class XIMU3_EulerAnglesMessage extends ffi.Struct {
   @ffi.Float()
   external double yaw;
 }
+
+typedef XIMU3_CallbackEulerAnglesMessageFunction = ffi.Void Function(
+    XIMU3_EulerAnglesMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackEulerAnglesMessageFunction = void Function(
+    XIMU3_EulerAnglesMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackEulerAnglesMessage
+    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackEulerAnglesMessageFunction>>;
 
 final class XIMU3_LinearAccelerationMessage extends ffi.Struct {
   @ffi.Uint64()
@@ -5478,6 +5669,13 @@ final class XIMU3_LinearAccelerationMessage extends ffi.Struct {
   external double acceleration_z;
 }
 
+typedef XIMU3_CallbackLinearAccelerationMessageFunction = ffi.Void Function(
+    XIMU3_LinearAccelerationMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackLinearAccelerationMessageFunction = void Function(
+    XIMU3_LinearAccelerationMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackLinearAccelerationMessage = ffi.Pointer<
+    ffi.NativeFunction<XIMU3_CallbackLinearAccelerationMessageFunction>>;
+
 final class XIMU3_EarthAccelerationMessage extends ffi.Struct {
   @ffi.Uint64()
   external int timestamp;
@@ -5504,6 +5702,13 @@ final class XIMU3_EarthAccelerationMessage extends ffi.Struct {
   external double acceleration_z;
 }
 
+typedef XIMU3_CallbackEarthAccelerationMessageFunction = ffi.Void Function(
+    XIMU3_EarthAccelerationMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackEarthAccelerationMessageFunction = void Function(
+    XIMU3_EarthAccelerationMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackEarthAccelerationMessage = ffi.Pointer<
+    ffi.NativeFunction<XIMU3_CallbackEarthAccelerationMessageFunction>>;
+
 final class XIMU3_AhrsStatusMessage extends ffi.Struct {
   @ffi.Uint64()
   external int timestamp;
@@ -5521,6 +5726,13 @@ final class XIMU3_AhrsStatusMessage extends ffi.Struct {
   external double magnetic_recovery;
 }
 
+typedef XIMU3_CallbackAhrsStatusMessageFunction = ffi.Void Function(
+    XIMU3_AhrsStatusMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackAhrsStatusMessageFunction = void Function(
+    XIMU3_AhrsStatusMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackAhrsStatusMessage
+    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackAhrsStatusMessageFunction>>;
+
 final class XIMU3_HighGAccelerometerMessage extends ffi.Struct {
   @ffi.Uint64()
   external int timestamp;
@@ -5535,6 +5747,13 @@ final class XIMU3_HighGAccelerometerMessage extends ffi.Struct {
   external double z;
 }
 
+typedef XIMU3_CallbackHighGAccelerometerMessageFunction = ffi.Void Function(
+    XIMU3_HighGAccelerometerMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackHighGAccelerometerMessageFunction = void Function(
+    XIMU3_HighGAccelerometerMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackHighGAccelerometerMessage = ffi.Pointer<
+    ffi.NativeFunction<XIMU3_CallbackHighGAccelerometerMessageFunction>>;
+
 final class XIMU3_TemperatureMessage extends ffi.Struct {
   @ffi.Uint64()
   external int timestamp;
@@ -5542,6 +5761,13 @@ final class XIMU3_TemperatureMessage extends ffi.Struct {
   @ffi.Float()
   external double temperature;
 }
+
+typedef XIMU3_CallbackTemperatureMessageFunction = ffi.Void Function(
+    XIMU3_TemperatureMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackTemperatureMessageFunction = void Function(
+    XIMU3_TemperatureMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackTemperatureMessage
+    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackTemperatureMessageFunction>>;
 
 final class XIMU3_BatteryMessage extends ffi.Struct {
   @ffi.Uint64()
@@ -5557,6 +5783,13 @@ final class XIMU3_BatteryMessage extends ffi.Struct {
   external double charging_status;
 }
 
+typedef XIMU3_CallbackBatteryMessageFunction = ffi.Void Function(
+    XIMU3_BatteryMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackBatteryMessageFunction = void Function(
+    XIMU3_BatteryMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackBatteryMessage
+    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackBatteryMessageFunction>>;
+
 final class XIMU3_RssiMessage extends ffi.Struct {
   @ffi.Uint64()
   external int timestamp;
@@ -5567,6 +5800,13 @@ final class XIMU3_RssiMessage extends ffi.Struct {
   @ffi.Float()
   external double power;
 }
+
+typedef XIMU3_CallbackRssiMessageFunction = ffi.Void Function(
+    XIMU3_RssiMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackRssiMessageFunction = void Function(
+    XIMU3_RssiMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackRssiMessage
+    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackRssiMessageFunction>>;
 
 final class XIMU3_SerialAccessoryMessage extends ffi.Struct {
   @ffi.Uint64()
@@ -5579,6 +5819,13 @@ final class XIMU3_SerialAccessoryMessage extends ffi.Struct {
   external int number_of_bytes;
 }
 
+typedef XIMU3_CallbackSerialAccessoryMessageFunction = ffi.Void Function(
+    XIMU3_SerialAccessoryMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackSerialAccessoryMessageFunction = void Function(
+    XIMU3_SerialAccessoryMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackSerialAccessoryMessage = ffi
+    .Pointer<ffi.NativeFunction<XIMU3_CallbackSerialAccessoryMessageFunction>>;
+
 final class XIMU3_NotificationMessage extends ffi.Struct {
   @ffi.Uint64()
   external int timestamp;
@@ -5590,6 +5837,13 @@ final class XIMU3_NotificationMessage extends ffi.Struct {
   external int number_of_bytes;
 }
 
+typedef XIMU3_CallbackNotificationMessageFunction = ffi.Void Function(
+    XIMU3_NotificationMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackNotificationMessageFunction = void Function(
+    XIMU3_NotificationMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackNotificationMessage = ffi
+    .Pointer<ffi.NativeFunction<XIMU3_CallbackNotificationMessageFunction>>;
+
 final class XIMU3_ErrorMessage extends ffi.Struct {
   @ffi.Uint64()
   external int timestamp;
@@ -5600,6 +5854,13 @@ final class XIMU3_ErrorMessage extends ffi.Struct {
   @ffi.Size()
   external int number_of_bytes;
 }
+
+typedef XIMU3_CallbackErrorMessageFunction = ffi.Void Function(
+    XIMU3_ErrorMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackErrorMessageFunction = void Function(
+    XIMU3_ErrorMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackErrorMessage
+    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackErrorMessageFunction>>;
 
 final class XIMU3_FileConverterProgress extends ffi.Struct {
   @ffi.UnsignedInt()
@@ -5617,6 +5878,13 @@ final class XIMU3_FileConverterProgress extends ffi.Struct {
   @ffi.Uint64()
   external int bytes_total;
 }
+
+typedef XIMU3_CallbackFileConverterProgressFunction = ffi.Void Function(
+    XIMU3_FileConverterProgress data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackFileConverterProgressFunction = void Function(
+    XIMU3_FileConverterProgress data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackFileConverterProgress = ffi
+    .Pointer<ffi.NativeFunction<XIMU3_CallbackFileConverterProgressFunction>>;
 
 final class XIMU3_NetworkAnnouncementMessage extends ffi.Struct {
   @ffi.Array.multi([256])
@@ -5660,6 +5928,13 @@ final class XIMU3_NetworkAnnouncementMessages extends ffi.Struct {
   external int capacity;
 }
 
+typedef XIMU3_CallbackNetworkAnnouncementMessageCFunction = ffi.Void Function(
+    XIMU3_NetworkAnnouncementMessage data, ffi.Pointer<ffi.Void> context);
+typedef DartXIMU3_CallbackNetworkAnnouncementMessageCFunction = void Function(
+    XIMU3_NetworkAnnouncementMessage data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackNetworkAnnouncementMessageC = ffi.Pointer<
+    ffi.NativeFunction<XIMU3_CallbackNetworkAnnouncementMessageCFunction>>;
+
 final class XIMU3_Device extends ffi.Struct {
   @ffi.Array.multi([256])
   external ffi.Array<ffi.Char> device_name;
@@ -5690,146 +5965,20 @@ final class XIMU3_Devices extends ffi.Struct {
   external int capacity;
 }
 
-typedef XIMU3_CallbackResult
-    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackResultFunction>>;
-typedef XIMU3_CallbackResultFunction = ffi.Void Function(
-    ffi.UnsignedInt data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackResultFunction = void Function(
-    XIMU3_Result data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackCharArrays
-    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackCharArraysFunction>>;
-typedef XIMU3_CallbackCharArraysFunction = ffi.Void Function(
-    XIMU3_CharArrays data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackCharArraysFunction = void Function(
-    XIMU3_CharArrays data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackDecodeError
-    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackDecodeErrorFunction>>;
-typedef XIMU3_CallbackDecodeErrorFunction = ffi.Void Function(
-    ffi.UnsignedInt data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackDecodeErrorFunction = void Function(
-    XIMU3_DecodeError data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackStatistics
-    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackStatisticsFunction>>;
-typedef XIMU3_CallbackStatisticsFunction = ffi.Void Function(
-    XIMU3_Statistics data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackStatisticsFunction = void Function(
-    XIMU3_Statistics data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackInertialMessage
-    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackInertialMessageFunction>>;
-typedef XIMU3_CallbackInertialMessageFunction = ffi.Void Function(
-    XIMU3_InertialMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackInertialMessageFunction = void Function(
-    XIMU3_InertialMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackMagnetometerMessage = ffi
-    .Pointer<ffi.NativeFunction<XIMU3_CallbackMagnetometerMessageFunction>>;
-typedef XIMU3_CallbackMagnetometerMessageFunction = ffi.Void Function(
-    XIMU3_MagnetometerMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackMagnetometerMessageFunction = void Function(
-    XIMU3_MagnetometerMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackQuaternionMessage
-    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackQuaternionMessageFunction>>;
-typedef XIMU3_CallbackQuaternionMessageFunction = ffi.Void Function(
-    XIMU3_QuaternionMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackQuaternionMessageFunction = void Function(
-    XIMU3_QuaternionMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackRotationMatrixMessage = ffi
-    .Pointer<ffi.NativeFunction<XIMU3_CallbackRotationMatrixMessageFunction>>;
-typedef XIMU3_CallbackRotationMatrixMessageFunction = ffi.Void Function(
-    XIMU3_RotationMatrixMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackRotationMatrixMessageFunction = void Function(
-    XIMU3_RotationMatrixMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackEulerAnglesMessage
-    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackEulerAnglesMessageFunction>>;
-typedef XIMU3_CallbackEulerAnglesMessageFunction = ffi.Void Function(
-    XIMU3_EulerAnglesMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackEulerAnglesMessageFunction = void Function(
-    XIMU3_EulerAnglesMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackLinearAccelerationMessage = ffi.Pointer<
-    ffi.NativeFunction<XIMU3_CallbackLinearAccelerationMessageFunction>>;
-typedef XIMU3_CallbackLinearAccelerationMessageFunction = ffi.Void Function(
-    XIMU3_LinearAccelerationMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackLinearAccelerationMessageFunction = void Function(
-    XIMU3_LinearAccelerationMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackEarthAccelerationMessage = ffi.Pointer<
-    ffi.NativeFunction<XIMU3_CallbackEarthAccelerationMessageFunction>>;
-typedef XIMU3_CallbackEarthAccelerationMessageFunction = ffi.Void Function(
-    XIMU3_EarthAccelerationMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackEarthAccelerationMessageFunction = void Function(
-    XIMU3_EarthAccelerationMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackAhrsStatusMessage
-    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackAhrsStatusMessageFunction>>;
-typedef XIMU3_CallbackAhrsStatusMessageFunction = ffi.Void Function(
-    XIMU3_AhrsStatusMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackAhrsStatusMessageFunction = void Function(
-    XIMU3_AhrsStatusMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackHighGAccelerometerMessage = ffi.Pointer<
-    ffi.NativeFunction<XIMU3_CallbackHighGAccelerometerMessageFunction>>;
-typedef XIMU3_CallbackHighGAccelerometerMessageFunction = ffi.Void Function(
-    XIMU3_HighGAccelerometerMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackHighGAccelerometerMessageFunction = void Function(
-    XIMU3_HighGAccelerometerMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackTemperatureMessage
-    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackTemperatureMessageFunction>>;
-typedef XIMU3_CallbackTemperatureMessageFunction = ffi.Void Function(
-    XIMU3_TemperatureMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackTemperatureMessageFunction = void Function(
-    XIMU3_TemperatureMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackBatteryMessage
-    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackBatteryMessageFunction>>;
-typedef XIMU3_CallbackBatteryMessageFunction = ffi.Void Function(
-    XIMU3_BatteryMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackBatteryMessageFunction = void Function(
-    XIMU3_BatteryMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackRssiMessage
-    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackRssiMessageFunction>>;
-typedef XIMU3_CallbackRssiMessageFunction = ffi.Void Function(
-    XIMU3_RssiMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackRssiMessageFunction = void Function(
-    XIMU3_RssiMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackSerialAccessoryMessage = ffi
-    .Pointer<ffi.NativeFunction<XIMU3_CallbackSerialAccessoryMessageFunction>>;
-typedef XIMU3_CallbackSerialAccessoryMessageFunction = ffi.Void Function(
-    XIMU3_SerialAccessoryMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackSerialAccessoryMessageFunction = void Function(
-    XIMU3_SerialAccessoryMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackNotificationMessage = ffi
-    .Pointer<ffi.NativeFunction<XIMU3_CallbackNotificationMessageFunction>>;
-typedef XIMU3_CallbackNotificationMessageFunction = ffi.Void Function(
-    XIMU3_NotificationMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackNotificationMessageFunction = void Function(
-    XIMU3_NotificationMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackErrorMessage
-    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackErrorMessageFunction>>;
-typedef XIMU3_CallbackErrorMessageFunction = ffi.Void Function(
-    XIMU3_ErrorMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackErrorMessageFunction = void Function(
-    XIMU3_ErrorMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackFileConverterProgress = ffi
-    .Pointer<ffi.NativeFunction<XIMU3_CallbackFileConverterProgressFunction>>;
-typedef XIMU3_CallbackFileConverterProgressFunction = ffi.Void Function(
-    XIMU3_FileConverterProgress data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackFileConverterProgressFunction = void Function(
-    XIMU3_FileConverterProgress data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackNetworkAnnouncementMessageC = ffi.Pointer<
-    ffi.NativeFunction<XIMU3_CallbackNetworkAnnouncementMessageCFunction>>;
-typedef XIMU3_CallbackNetworkAnnouncementMessageCFunction = ffi.Void Function(
-    XIMU3_NetworkAnnouncementMessage data, ffi.Pointer<ffi.Void> context);
-typedef DartXIMU3_CallbackNetworkAnnouncementMessageCFunction = void Function(
-    XIMU3_NetworkAnnouncementMessage data, ffi.Pointer<ffi.Void> context);
-typedef XIMU3_CallbackDevices
-    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackDevicesFunction>>;
 typedef XIMU3_CallbackDevicesFunction = ffi.Void Function(
     XIMU3_Devices data, ffi.Pointer<ffi.Void> context);
 typedef DartXIMU3_CallbackDevicesFunction = void Function(
     XIMU3_Devices data, ffi.Pointer<ffi.Void> context);
+typedef XIMU3_CallbackDevices
+    = ffi.Pointer<ffi.NativeFunction<XIMU3_CallbackDevicesFunction>>;
 
 const int __GNUC_VA_LIST = 1;
 
 const int __bool_true_false_are_defined = 1;
 
-const int false1 = 0;
+const int false$ = 0;
 
-const int true1 = 1;
+const int true$ = 1;
 
 const int __has_safe_buffers = 1;
 
@@ -6109,6 +6258,10 @@ const int __MAC_14_5 = 140500;
 
 const int __MAC_15_0 = 150000;
 
+const int __MAC_15_1 = 150100;
+
+const int __MAC_15_2 = 150200;
+
 const int __IPHONE_2_0 = 20000;
 
 const int __IPHONE_2_1 = 20100;
@@ -6269,6 +6422,10 @@ const int __IPHONE_17_5 = 170500;
 
 const int __IPHONE_18_0 = 180000;
 
+const int __IPHONE_18_1 = 180100;
+
+const int __IPHONE_18_2 = 180200;
+
 const int __WATCHOS_1_0 = 10000;
 
 const int __WATCHOS_2_0 = 20000;
@@ -6364,6 +6521,10 @@ const int __WATCHOS_10_4 = 100400;
 const int __WATCHOS_10_5 = 100500;
 
 const int __WATCHOS_11_0 = 110000;
+
+const int __WATCHOS_11_1 = 110100;
+
+const int __WATCHOS_11_2 = 110200;
 
 const int __TVOS_9_0 = 90000;
 
@@ -6463,6 +6624,10 @@ const int __TVOS_17_5 = 170500;
 
 const int __TVOS_18_0 = 180000;
 
+const int __TVOS_18_1 = 180100;
+
+const int __TVOS_18_2 = 180200;
+
 const int __BRIDGEOS_2_0 = 20000;
 
 const int __BRIDGEOS_3_0 = 30000;
@@ -6517,6 +6682,10 @@ const int __BRIDGEOS_8_5 = 80500;
 
 const int __BRIDGEOS_9_0 = 90000;
 
+const int __BRIDGEOS_9_1 = 90100;
+
+const int __BRIDGEOS_9_2 = 90200;
+
 const int __DRIVERKIT_19_0 = 190000;
 
 const int __DRIVERKIT_20_0 = 200000;
@@ -6545,6 +6714,10 @@ const int __DRIVERKIT_23_5 = 230500;
 
 const int __DRIVERKIT_24_0 = 240000;
 
+const int __DRIVERKIT_24_1 = 240100;
+
+const int __DRIVERKIT_24_2 = 240200;
+
 const int __VISIONOS_1_0 = 10000;
 
 const int __VISIONOS_1_1 = 10100;
@@ -6552,6 +6725,10 @@ const int __VISIONOS_1_1 = 10100;
 const int __VISIONOS_1_2 = 10200;
 
 const int __VISIONOS_2_0 = 20000;
+
+const int __VISIONOS_2_1 = 20100;
+
+const int __VISIONOS_2_2 = 20200;
 
 const int MAC_OS_X_VERSION_10_0 = 1000;
 
@@ -6677,9 +6854,13 @@ const int MAC_OS_VERSION_14_5 = 140500;
 
 const int MAC_OS_VERSION_15_0 = 150000;
 
+const int MAC_OS_VERSION_15_1 = 150100;
+
+const int MAC_OS_VERSION_15_2 = 150200;
+
 const int __MAC_OS_X_VERSION_MIN_REQUIRED = 150000;
 
-const int __MAC_OS_X_VERSION_MAX_ALLOWED = 150000;
+const int __MAC_OS_X_VERSION_MAX_ALLOWED = 150200;
 
 const int __ENABLE_LEGACY_MAC_AVAILABILITY = 1;
 
