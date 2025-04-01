@@ -1,3 +1,4 @@
+// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -13,10 +14,7 @@ part of 'app_router.dart';
 /// [CommandsPage]
 class CommandsRoute extends PageRouteInfo<void> {
   const CommandsRoute({List<PageRouteInfo>? children})
-      : super(
-          CommandsRoute.name,
-          initialChildren: children,
-        );
+    : super(CommandsRoute.name, initialChildren: children);
 
   static const String name = 'CommandsRoute';
 
@@ -32,10 +30,7 @@ class CommandsRoute extends PageRouteInfo<void> {
 /// [ConnectionsPage]
 class ConnectionsRoute extends PageRouteInfo<void> {
   const ConnectionsRoute({List<PageRouteInfo>? children})
-      : super(
-          ConnectionsRoute.name,
-          initialChildren: children,
-        );
+    : super(ConnectionsRoute.name, initialChildren: children);
 
   static const String name = 'ConnectionsRoute';
 
@@ -51,10 +46,7 @@ class ConnectionsRoute extends PageRouteInfo<void> {
 /// [DataLoggerNamePage]
 class DataLoggerNameRoute extends PageRouteInfo<void> {
   const DataLoggerNameRoute({List<PageRouteInfo>? children})
-      : super(
-          DataLoggerNameRoute.name,
-          initialChildren: children,
-        );
+    : super(DataLoggerNameRoute.name, initialChildren: children);
 
   static const String name = 'DataLoggerNameRoute';
 
@@ -70,10 +62,7 @@ class DataLoggerNameRoute extends PageRouteInfo<void> {
 /// [DataLoggerPage]
 class DataLoggerRoute extends PageRouteInfo<void> {
   const DataLoggerRoute({List<PageRouteInfo>? children})
-      : super(
-          DataLoggerRoute.name,
-          initialChildren: children,
-        );
+    : super(DataLoggerRoute.name, initialChildren: children);
 
   static const String name = 'DataLoggerRoute';
 
@@ -89,10 +78,7 @@ class DataLoggerRoute extends PageRouteInfo<void> {
 /// [DeviceSettingsPage]
 class DeviceSettingsRoute extends PageRouteInfo<void> {
   const DeviceSettingsRoute({List<PageRouteInfo>? children})
-      : super(
-          DeviceSettingsRoute.name,
-          initialChildren: children,
-        );
+    : super(DeviceSettingsRoute.name, initialChildren: children);
 
   static const String name = 'DeviceSettingsRoute';
 
@@ -113,14 +99,14 @@ class GraphLayoutRoute extends PageRouteInfo<GraphLayoutRouteArgs> {
     required List<Graph> graphs,
     List<PageRouteInfo>? children,
   }) : super(
-          GraphLayoutRoute.name,
-          args: GraphLayoutRouteArgs(
-            key: key,
-            toggleGraph: toggleGraph,
-            graphs: graphs,
-          ),
-          initialChildren: children,
-        );
+         GraphLayoutRoute.name,
+         args: GraphLayoutRouteArgs(
+           key: key,
+           toggleGraph: toggleGraph,
+           graphs: graphs,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'GraphLayoutRoute';
 
@@ -160,10 +146,7 @@ class GraphLayoutRouteArgs {
 /// [ManualConnectionPage]
 class ManualConnectionRoute extends PageRouteInfo<void> {
   const ManualConnectionRoute({List<PageRouteInfo>? children})
-      : super(
-          ManualConnectionRoute.name,
-          initialChildren: children,
-        );
+    : super(ManualConnectionRoute.name, initialChildren: children);
 
   static const String name = 'ManualConnectionRoute';
 
@@ -179,10 +162,7 @@ class ManualConnectionRoute extends PageRouteInfo<void> {
 /// [NewConnectionPage]
 class NewConnectionRoute extends PageRouteInfo<void> {
   const NewConnectionRoute({List<PageRouteInfo>? children})
-      : super(
-          NewConnectionRoute.name,
-          initialChildren: children,
-        );
+    : super(NewConnectionRoute.name, initialChildren: children);
 
   static const String name = 'NewConnectionRoute';
 
@@ -202,13 +182,10 @@ class NoteCommandRoute extends PageRouteInfo<NoteCommandRouteArgs> {
     required List<Device> devices,
     List<PageRouteInfo>? children,
   }) : super(
-          NoteCommandRoute.name,
-          args: NoteCommandRouteArgs(
-            key: key,
-            devices: devices,
-          ),
-          initialChildren: children,
-        );
+         NoteCommandRoute.name,
+         args: NoteCommandRouteArgs(key: key, devices: devices),
+         initialChildren: children,
+       );
 
   static const String name = 'NoteCommandRoute';
 
@@ -216,19 +193,13 @@ class NoteCommandRoute extends PageRouteInfo<NoteCommandRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<NoteCommandRouteArgs>();
-      return NoteCommandPage(
-        key: args.key,
-        devices: args.devices,
-      );
+      return NoteCommandPage(key: args.key, devices: args.devices);
     },
   );
 }
 
 class NoteCommandRouteArgs {
-  const NoteCommandRouteArgs({
-    this.key,
-    required this.devices,
-  });
+  const NoteCommandRouteArgs({this.key, required this.devices});
 
   final Key? key;
 
@@ -244,10 +215,7 @@ class NoteCommandRouteArgs {
 /// [TabPage]
 class TabRoute extends PageRouteInfo<void> {
   const TabRoute({List<PageRouteInfo>? children})
-      : super(
-          TabRoute.name,
-          initialChildren: children,
-        );
+    : super(TabRoute.name, initialChildren: children);
 
   static const String name = 'TabRoute';
 
