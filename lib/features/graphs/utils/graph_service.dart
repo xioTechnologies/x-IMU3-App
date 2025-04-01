@@ -253,7 +253,7 @@ class GraphDataService {
       fontSize: 16,
     );
     return SideTitleWidget(
-      axisSide: meta.axisSide,
+      meta: meta,
       space: 8.0,
       child: Text(value.toString(), style: style),
     );

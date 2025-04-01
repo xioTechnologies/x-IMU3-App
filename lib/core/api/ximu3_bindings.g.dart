@@ -6109,6 +6109,10 @@ const int __MAC_14_5 = 140500;
 
 const int __MAC_15_0 = 150000;
 
+const int __MAC_15_1 = 150100;
+
+const int __MAC_15_2 = 150200;
+
 const int __IPHONE_2_0 = 20000;
 
 const int __IPHONE_2_1 = 20100;
@@ -6269,6 +6273,10 @@ const int __IPHONE_17_5 = 170500;
 
 const int __IPHONE_18_0 = 180000;
 
+const int __IPHONE_18_1 = 180100;
+
+const int __IPHONE_18_2 = 180200;
+
 const int __WATCHOS_1_0 = 10000;
 
 const int __WATCHOS_2_0 = 20000;
@@ -6364,6 +6372,10 @@ const int __WATCHOS_10_4 = 100400;
 const int __WATCHOS_10_5 = 100500;
 
 const int __WATCHOS_11_0 = 110000;
+
+const int __WATCHOS_11_1 = 110100;
+
+const int __WATCHOS_11_2 = 110200;
 
 const int __TVOS_9_0 = 90000;
 
@@ -6463,6 +6475,10 @@ const int __TVOS_17_5 = 170500;
 
 const int __TVOS_18_0 = 180000;
 
+const int __TVOS_18_1 = 180100;
+
+const int __TVOS_18_2 = 180200;
+
 const int __BRIDGEOS_2_0 = 20000;
 
 const int __BRIDGEOS_3_0 = 30000;
@@ -6517,6 +6533,10 @@ const int __BRIDGEOS_8_5 = 80500;
 
 const int __BRIDGEOS_9_0 = 90000;
 
+const int __BRIDGEOS_9_1 = 90100;
+
+const int __BRIDGEOS_9_2 = 90200;
+
 const int __DRIVERKIT_19_0 = 190000;
 
 const int __DRIVERKIT_20_0 = 200000;
@@ -6545,6 +6565,10 @@ const int __DRIVERKIT_23_5 = 230500;
 
 const int __DRIVERKIT_24_0 = 240000;
 
+const int __DRIVERKIT_24_1 = 240100;
+
+const int __DRIVERKIT_24_2 = 240200;
+
 const int __VISIONOS_1_0 = 10000;
 
 const int __VISIONOS_1_1 = 10100;
@@ -6552,6 +6576,10 @@ const int __VISIONOS_1_1 = 10100;
 const int __VISIONOS_1_2 = 10200;
 
 const int __VISIONOS_2_0 = 20000;
+
+const int __VISIONOS_2_1 = 20100;
+
+const int __VISIONOS_2_2 = 20200;
 
 const int MAC_OS_X_VERSION_10_0 = 1000;
 
@@ -6677,9 +6705,13 @@ const int MAC_OS_VERSION_14_5 = 140500;
 
 const int MAC_OS_VERSION_15_0 = 150000;
 
+const int MAC_OS_VERSION_15_1 = 150100;
+
+const int MAC_OS_VERSION_15_2 = 150200;
+
 const int __MAC_OS_X_VERSION_MIN_REQUIRED = 150000;
 
-const int __MAC_OS_X_VERSION_MAX_ALLOWED = 150000;
+const int __MAC_OS_X_VERSION_MAX_ALLOWED = 150200;
 
 const int __ENABLE_LEGACY_MAC_AVAILABILITY = 1;
 
