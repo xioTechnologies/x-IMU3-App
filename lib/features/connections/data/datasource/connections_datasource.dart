@@ -422,7 +422,7 @@ class ConnectionsAPI {
       );
 
       var batteryStatus = BatteryStatus(
-        status: message.charging_status.index.toDouble(),
+        charging_status: message.charging_status.index.toDouble(),
         percentage: message.battery.toDouble(),
         timestamp: DateTime.now().millisecondsSinceEpoch,
       );

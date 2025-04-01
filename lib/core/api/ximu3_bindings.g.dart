@@ -2127,6 +2127,20 @@ class NativeLibrary {
   late final _XIMU3_char_arrays_free =
       _XIMU3_char_arrays_freePtr.asFunction<void Function(XIMU3_CharArrays)>();
 
+  XIMU3_ChargingStatus XIMU3_charging_status_from_float(
+    double charging_status,
+  ) {
+    return XIMU3_ChargingStatus.fromValue(_XIMU3_charging_status_from_float(
+      charging_status,
+    ));
+  }
+
+  late final _XIMU3_charging_status_from_floatPtr =
+      _lookup<ffi.NativeFunction<ffi.UnsignedInt Function(ffi.Float)>>(
+          'XIMU3_charging_status_from_float');
+  late final _XIMU3_charging_status_from_float =
+      _XIMU3_charging_status_from_floatPtr.asFunction<int Function(double)>();
+
   ffi.Pointer<ffi.Char> XIMU3_charging_status_to_string(
     XIMU3_ChargingStatus charging_status,
   ) {
@@ -2141,6 +2155,21 @@ class NativeLibrary {
   late final _XIMU3_charging_status_to_string =
       _XIMU3_charging_status_to_stringPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(int)>();
+
+  XIMU3_CommandMessage XIMU3_command_message_parse(
+    ffi.Pointer<ffi.Char> json,
+  ) {
+    return _XIMU3_command_message_parse(
+      json,
+    );
+  }
+
+  late final _XIMU3_command_message_parsePtr = _lookup<
+      ffi.NativeFunction<
+          XIMU3_CommandMessage Function(
+              ffi.Pointer<ffi.Char>)>>('XIMU3_command_message_parse');
+  late final _XIMU3_command_message_parse = _XIMU3_command_message_parsePtr
+      .asFunction<XIMU3_CommandMessage Function(ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<XIMU3_Connection> XIMU3_connection_new_usb(
     XIMU3_UsbConnectionInfo connection_info,
@@ -3531,7 +3560,7 @@ class NativeLibrary {
   ffi.Pointer<XIMU3_FileConverter> XIMU3_file_converter_new(
     ffi.Pointer<ffi.Char> destination,
     ffi.Pointer<ffi.Char> name,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> files,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> file_paths,
     int length,
     XIMU3_CallbackFileConverterProgress callback,
     ffi.Pointer<ffi.Void> context,
@@ -3539,7 +3568,7 @@ class NativeLibrary {
     return _XIMU3_file_converter_new(
       destination,
       name,
-      files,
+      file_paths,
       length,
       callback,
       context,
@@ -4222,6 +4251,37 @@ final class arm_neon_state extends ffi.Opaque {}
 final class __arm_pagein_state extends ffi.Struct {
   @ffi.Int()
   external int __pagein_error;
+}
+
+final class arm_sme_state extends ffi.Struct {
+  @__uint64_t()
+  external int svcr;
+
+  @__uint64_t()
+  external int tpidr2_el0;
+
+  @__uint16_t()
+  external int svl_b;
+}
+
+final class arm_sve_z_state extends ffi.Struct {
+  @ffi.Array.multi([16, 256])
+  external ffi.Array<ffi.Array<ffi.Char>> z;
+}
+
+final class arm_sve_p_state extends ffi.Struct {
+  @ffi.Array.multi([16, 32])
+  external ffi.Array<ffi.Array<ffi.Char>> p;
+}
+
+final class arm_sme_za_state extends ffi.Struct {
+  @ffi.Array.multi([4096])
+  external ffi.Array<ffi.Char> za;
+}
+
+final class arm_sme2_state extends ffi.Struct {
+  @ffi.Array.multi([64])
+  external ffi.Array<ffi.Char> zt0;
 }
 
 final class arm_legacy_debug_state extends ffi.Struct {
@@ -5281,7 +5341,8 @@ typedef mode_t = __darwin_mode_t;
 enum XIMU3_ChargingStatus {
   XIMU3_ChargingStatusNotConnected(0),
   XIMU3_ChargingStatusCharging(1),
-  XIMU3_ChargingStatusChargingComplete(2);
+  XIMU3_ChargingStatusChargingComplete(2),
+  XIMU3_ChargingStatusChargingOnHold(3);
 
   final int value;
   const XIMU3_ChargingStatus(this.value);
@@ -5290,6 +5351,7 @@ enum XIMU3_ChargingStatus {
         0 => XIMU3_ChargingStatusNotConnected,
         1 => XIMU3_ChargingStatusCharging,
         2 => XIMU3_ChargingStatusChargingComplete,
+        3 => XIMU3_ChargingStatusChargingOnHold,
         _ =>
           throw ArgumentError('Unknown value for XIMU3_ChargingStatus: $value'),
       };
@@ -5395,6 +5457,20 @@ final class XIMU3_CharArrays extends ffi.Struct {
 
   @ffi.Uint32()
   external int capacity;
+}
+
+final class XIMU3_CommandMessage extends ffi.Struct {
+  @ffi.Array.multi([256])
+  external ffi.Array<ffi.Char> json;
+
+  @ffi.Array.multi([256])
+  external ffi.Array<ffi.Char> key;
+
+  @ffi.Array.multi([256])
+  external ffi.Array<ffi.Char> value;
+
+  @ffi.Array.multi([256])
+  external ffi.Array<ffi.Char> error;
 }
 
 final class XIMU3_UsbConnectionInfo extends ffi.Struct {
@@ -6122,17 +6198,31 @@ const int __API_TO_BE_DEPRECATED = 100000;
 
 const int __API_TO_BE_DEPRECATED_MACOS = 100000;
 
+const int __API_TO_BE_DEPRECATED_MACOSAPPLICATIONEXTENSION = 100000;
+
 const int __API_TO_BE_DEPRECATED_IOS = 100000;
+
+const int __API_TO_BE_DEPRECATED_IOSAPPLICATIONEXTENSION = 100000;
 
 const int __API_TO_BE_DEPRECATED_MACCATALYST = 100000;
 
+const int __API_TO_BE_DEPRECATED_MACCATALYSTAPPLICATIONEXTENSION = 100000;
+
 const int __API_TO_BE_DEPRECATED_WATCHOS = 100000;
 
+const int __API_TO_BE_DEPRECATED_WATCHOSAPPLICATIONEXTENSION = 100000;
+
 const int __API_TO_BE_DEPRECATED_TVOS = 100000;
+
+const int __API_TO_BE_DEPRECATED_TVOSAPPLICATIONEXTENSION = 100000;
 
 const int __API_TO_BE_DEPRECATED_DRIVERKIT = 100000;
 
 const int __API_TO_BE_DEPRECATED_VISIONOS = 100000;
+
+const int __API_TO_BE_DEPRECATED_VISIONOSAPPLICATIONEXTENSION = 100000;
+
+const int __API_TO_BE_DEPRECATED_KERNELKIT = 100000;
 
 const int __MAC_10_0 = 1000;
 
@@ -6244,6 +6334,8 @@ const int __MAC_13_5 = 130500;
 
 const int __MAC_13_6 = 130600;
 
+const int __MAC_13_7 = 130700;
+
 const int __MAC_14_0 = 140000;
 
 const int __MAC_14_1 = 140100;
@@ -6256,11 +6348,19 @@ const int __MAC_14_4 = 140400;
 
 const int __MAC_14_5 = 140500;
 
+const int __MAC_14_6 = 140600;
+
+const int __MAC_14_7 = 140700;
+
 const int __MAC_15_0 = 150000;
 
 const int __MAC_15_1 = 150100;
 
 const int __MAC_15_2 = 150200;
+
+const int __MAC_15_3 = 150300;
+
+const int __MAC_15_4 = 150400;
 
 const int __IPHONE_2_0 = 20000;
 
@@ -6420,11 +6520,19 @@ const int __IPHONE_17_4 = 170400;
 
 const int __IPHONE_17_5 = 170500;
 
+const int __IPHONE_17_6 = 170600;
+
+const int __IPHONE_17_7 = 170700;
+
 const int __IPHONE_18_0 = 180000;
 
 const int __IPHONE_18_1 = 180100;
 
 const int __IPHONE_18_2 = 180200;
+
+const int __IPHONE_18_3 = 180300;
+
+const int __IPHONE_18_4 = 180400;
 
 const int __WATCHOS_1_0 = 10000;
 
@@ -6520,11 +6628,19 @@ const int __WATCHOS_10_4 = 100400;
 
 const int __WATCHOS_10_5 = 100500;
 
+const int __WATCHOS_10_6 = 100600;
+
+const int __WATCHOS_10_7 = 100700;
+
 const int __WATCHOS_11_0 = 110000;
 
 const int __WATCHOS_11_1 = 110100;
 
 const int __WATCHOS_11_2 = 110200;
+
+const int __WATCHOS_11_3 = 110300;
+
+const int __WATCHOS_11_4 = 110400;
 
 const int __TVOS_9_0 = 90000;
 
@@ -6622,11 +6738,17 @@ const int __TVOS_17_4 = 170400;
 
 const int __TVOS_17_5 = 170500;
 
+const int __TVOS_17_6 = 170600;
+
 const int __TVOS_18_0 = 180000;
 
 const int __TVOS_18_1 = 180100;
 
 const int __TVOS_18_2 = 180200;
+
+const int __TVOS_18_3 = 180300;
+
+const int __TVOS_18_4 = 180400;
 
 const int __BRIDGEOS_2_0 = 20000;
 
@@ -6680,11 +6802,17 @@ const int __BRIDGEOS_8_4 = 80400;
 
 const int __BRIDGEOS_8_5 = 80500;
 
+const int __BRIDGEOS_8_6 = 80600;
+
 const int __BRIDGEOS_9_0 = 90000;
 
 const int __BRIDGEOS_9_1 = 90100;
 
 const int __BRIDGEOS_9_2 = 90200;
+
+const int __BRIDGEOS_9_3 = 90300;
+
+const int __BRIDGEOS_9_4 = 90400;
 
 const int __DRIVERKIT_19_0 = 190000;
 
@@ -6712,11 +6840,17 @@ const int __DRIVERKIT_23_4 = 230400;
 
 const int __DRIVERKIT_23_5 = 230500;
 
+const int __DRIVERKIT_23_6 = 230600;
+
 const int __DRIVERKIT_24_0 = 240000;
 
 const int __DRIVERKIT_24_1 = 240100;
 
 const int __DRIVERKIT_24_2 = 240200;
+
+const int __DRIVERKIT_24_3 = 240300;
+
+const int __DRIVERKIT_24_4 = 240400;
 
 const int __VISIONOS_1_0 = 10000;
 
@@ -6724,11 +6858,17 @@ const int __VISIONOS_1_1 = 10100;
 
 const int __VISIONOS_1_2 = 10200;
 
+const int __VISIONOS_1_3 = 10300;
+
 const int __VISIONOS_2_0 = 20000;
 
 const int __VISIONOS_2_1 = 20100;
 
 const int __VISIONOS_2_2 = 20200;
+
+const int __VISIONOS_2_3 = 20300;
+
+const int __VISIONOS_2_4 = 20400;
 
 const int MAC_OS_X_VERSION_10_0 = 1000;
 
@@ -6840,6 +6980,8 @@ const int MAC_OS_VERSION_13_5 = 130500;
 
 const int MAC_OS_VERSION_13_6 = 130600;
 
+const int MAC_OS_VERSION_13_7 = 130700;
+
 const int MAC_OS_VERSION_14_0 = 140000;
 
 const int MAC_OS_VERSION_14_1 = 140100;
@@ -6852,15 +6994,29 @@ const int MAC_OS_VERSION_14_4 = 140400;
 
 const int MAC_OS_VERSION_14_5 = 140500;
 
+const int MAC_OS_VERSION_14_6 = 140600;
+
+const int MAC_OS_VERSION_14_7 = 140700;
+
 const int MAC_OS_VERSION_15_0 = 150000;
 
 const int MAC_OS_VERSION_15_1 = 150100;
 
 const int MAC_OS_VERSION_15_2 = 150200;
 
+const int MAC_OS_VERSION_15_3 = 150300;
+
+const int MAC_OS_VERSION_15_4 = 150400;
+
+const int __AVAILABILITY_VERSIONS_VERSION_HASH = 93585900;
+
+const String __AVAILABILITY_VERSIONS_VERSION_STRING = 'Local';
+
+const String __AVAILABILITY_FILE = 'AvailabilityVersions.h';
+
 const int __MAC_OS_X_VERSION_MIN_REQUIRED = 150000;
 
-const int __MAC_OS_X_VERSION_MAX_ALLOWED = 150200;
+const int __MAC_OS_X_VERSION_MAX_ALLOWED = 150400;
 
 const int __ENABLE_LEGACY_MAC_AVAILABILITY = 1;
 
@@ -7265,6 +7421,8 @@ const int IOPOL_VFS_IGNORE_PERMISSIONS_ON = 1;
 const int IOPOL_VFS_SKIP_MTIME_UPDATE_OFF = 0;
 
 const int IOPOL_VFS_SKIP_MTIME_UPDATE_ON = 1;
+
+const int IOPOL_VFS_SKIP_MTIME_UPDATE_IGNORE = 2;
 
 const int IOPOL_VFS_ALLOW_LOW_SPACE_WRITES_OFF = 0;
 
