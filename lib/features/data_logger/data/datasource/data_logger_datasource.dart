@@ -56,9 +56,11 @@ class DataLoggerAPI {
 
   Future<bool> stopSession(String sessionName) async {
     if (dataLoggerPointer != null) {
-      await zipSession(sessionName);
       API.api.XIMU3_data_logger_free(dataLoggerPointer!);
       dataLoggerPointer = null;
+
+      await zipSession(sessionName);
+
       return true;
     } else {
       return false;
@@ -94,8 +96,8 @@ class DataLoggerAPI {
 
       final encoder = ZipFileEncoder();
       encoder.create(tempZipPath);
-      encoder.addDirectory(Directory(sessionFolder), includeDirName: false);
-      encoder.close();
+      await encoder.addDirectory(Directory(sessionFolder), includeDirName: false);
+      await encoder.close();
 
       final sessionDirectory = Directory(sessionFolder);
       if (await sessionDirectory.exists()) {
