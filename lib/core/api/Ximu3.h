@@ -18,7 +18,7 @@
 
 #ifdef __cplusplus
 namespace ximu3 {
-#endif // __cplusplus
+#endif  // __cplusplus
 
 #define XIMU3_DATA_MESSAGE_CHAR_ARRAY_SIZE 256
 
@@ -29,6 +29,7 @@ typedef enum XIMU3_ChargingStatus
     XIMU3_ChargingStatusNotConnected,
     XIMU3_ChargingStatusCharging,
     XIMU3_ChargingStatusChargingComplete,
+    XIMU3_ChargingStatusChargingOnHold,
 } XIMU3_ChargingStatus;
 
 typedef enum XIMU3_ConnectionType
@@ -83,6 +84,14 @@ typedef struct XIMU3_CharArrays
     uint32_t length;
     uint32_t capacity;
 } XIMU3_CharArrays;
+
+typedef struct XIMU3_CommandMessage
+{
+    char json[XIMU3_CHAR_ARRAY_SIZE];
+    char key[XIMU3_CHAR_ARRAY_SIZE];
+    char value[XIMU3_CHAR_ARRAY_SIZE];
+    char error[XIMU3_CHAR_ARRAY_SIZE];
+} XIMU3_CommandMessage;
 
 typedef struct XIMU3_UsbConnectionInfo
 {
@@ -366,7 +375,11 @@ extern "C" {
 
 void XIMU3_char_arrays_free(struct XIMU3_CharArrays char_arrays);
 
+enum XIMU3_ChargingStatus XIMU3_charging_status_from_float(float charging_status);
+
 const char *XIMU3_charging_status_to_string(enum XIMU3_ChargingStatus charging_status);
+
+struct XIMU3_CommandMessage XIMU3_command_message_parse(const char *json);
 
 struct XIMU3_Connection *XIMU3_connection_new_usb(struct XIMU3_UsbConnectionInfo connection_info);
 
@@ -516,7 +529,7 @@ const char *XIMU3_file_converter_status_to_string(enum XIMU3_FileConverterStatus
 
 const char *XIMU3_file_converter_progress_to_string(struct XIMU3_FileConverterProgress progress);
 
-struct XIMU3_FileConverter *XIMU3_file_converter_new(const char *destination, const char *name, const char *const *files, uint32_t length, XIMU3_CallbackFileConverterProgress callback, void *context);
+struct XIMU3_FileConverter *XIMU3_file_converter_new(const char *destination, const char *name, const char *const *file_paths, uint32_t length, XIMU3_CallbackFileConverterProgress callback, void *context);
 
 void XIMU3_file_converter_free(struct XIMU3_FileConverter *file_converter);
 
@@ -567,11 +580,11 @@ const char *XIMU3_result_to_string(enum XIMU3_Result result);
 const char *XIMU3_statistics_to_string(struct XIMU3_Statistics statistics);
 
 #ifdef __cplusplus
-} // extern "C"
-#endif // __cplusplus
+}  // extern "C"
+#endif  // __cplusplus
 
 #ifdef __cplusplus
-} // namespace ximu3
-#endif // __cplusplus
+}  // namespace ximu3
+#endif  // __cplusplus
 
-#endif /* XIMU3_H */
+#endif  /* XIMU3_H */

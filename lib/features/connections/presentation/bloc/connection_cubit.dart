@@ -280,7 +280,7 @@ class ConnectionCubit extends Cubit<ConnectionsState> {
     emit(ConnectionCommandSendingState());
 
     await sendCommandsUseCase.call(
-      SendCommandsUseCaseParams(commands: [CommandMessage(key: key, value: value)], connection: connection)
+      SendCommandsUseCaseParams(commands: [CommandMessage(key, value)], connection: connection)
     );
 
     emit(ConnectionCommandSentState());

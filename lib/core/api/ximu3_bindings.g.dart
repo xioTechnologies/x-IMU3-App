@@ -2127,6 +2127,20 @@ class NativeLibrary {
   late final _XIMU3_char_arrays_free =
       _XIMU3_char_arrays_freePtr.asFunction<void Function(XIMU3_CharArrays)>();
 
+  XIMU3_ChargingStatus XIMU3_charging_status_from_float(
+    double charging_status,
+  ) {
+    return XIMU3_ChargingStatus.fromValue(_XIMU3_charging_status_from_float(
+      charging_status,
+    ));
+  }
+
+  late final _XIMU3_charging_status_from_floatPtr =
+      _lookup<ffi.NativeFunction<ffi.UnsignedInt Function(ffi.Float)>>(
+          'XIMU3_charging_status_from_float');
+  late final _XIMU3_charging_status_from_float =
+      _XIMU3_charging_status_from_floatPtr.asFunction<int Function(double)>();
+
   ffi.Pointer<ffi.Char> XIMU3_charging_status_to_string(
     XIMU3_ChargingStatus charging_status,
   ) {
@@ -2141,6 +2155,21 @@ class NativeLibrary {
   late final _XIMU3_charging_status_to_string =
       _XIMU3_charging_status_to_stringPtr.asFunction<
           ffi.Pointer<ffi.Char> Function(int)>();
+
+  XIMU3_CommandMessage XIMU3_command_message_parse(
+    ffi.Pointer<ffi.Char> json,
+  ) {
+    return _XIMU3_command_message_parse(
+      json,
+    );
+  }
+
+  late final _XIMU3_command_message_parsePtr = _lookup<
+      ffi.NativeFunction<
+          XIMU3_CommandMessage Function(
+              ffi.Pointer<ffi.Char>)>>('XIMU3_command_message_parse');
+  late final _XIMU3_command_message_parse = _XIMU3_command_message_parsePtr
+      .asFunction<XIMU3_CommandMessage Function(ffi.Pointer<ffi.Char>)>();
 
   ffi.Pointer<XIMU3_Connection> XIMU3_connection_new_usb(
     XIMU3_UsbConnectionInfo connection_info,
@@ -3531,7 +3560,7 @@ class NativeLibrary {
   ffi.Pointer<XIMU3_FileConverter> XIMU3_file_converter_new(
     ffi.Pointer<ffi.Char> destination,
     ffi.Pointer<ffi.Char> name,
-    ffi.Pointer<ffi.Pointer<ffi.Char>> files,
+    ffi.Pointer<ffi.Pointer<ffi.Char>> file_paths,
     int length,
     XIMU3_CallbackFileConverterProgress callback,
     ffi.Pointer<ffi.Void> context,
@@ -3539,7 +3568,7 @@ class NativeLibrary {
     return _XIMU3_file_converter_new(
       destination,
       name,
-      files,
+      file_paths,
       length,
       callback,
       context,
@@ -5281,7 +5310,8 @@ typedef mode_t = __darwin_mode_t;
 enum XIMU3_ChargingStatus {
   XIMU3_ChargingStatusNotConnected(0),
   XIMU3_ChargingStatusCharging(1),
-  XIMU3_ChargingStatusChargingComplete(2);
+  XIMU3_ChargingStatusChargingComplete(2),
+  XIMU3_ChargingStatusChargingOnHold(3);
 
   final int value;
   const XIMU3_ChargingStatus(this.value);
@@ -5290,6 +5320,7 @@ enum XIMU3_ChargingStatus {
         0 => XIMU3_ChargingStatusNotConnected,
         1 => XIMU3_ChargingStatusCharging,
         2 => XIMU3_ChargingStatusChargingComplete,
+        3 => XIMU3_ChargingStatusChargingOnHold,
         _ =>
           throw ArgumentError('Unknown value for XIMU3_ChargingStatus: $value'),
       };
@@ -5395,6 +5426,20 @@ final class XIMU3_CharArrays extends ffi.Struct {
 
   @ffi.Uint32()
   external int capacity;
+}
+
+final class XIMU3_CommandMessage extends ffi.Struct {
+  @ffi.Array.multi([256])
+  external ffi.Array<ffi.Char> json;
+
+  @ffi.Array.multi([256])
+  external ffi.Array<ffi.Char> key;
+
+  @ffi.Array.multi([256])
+  external ffi.Array<ffi.Char> value;
+
+  @ffi.Array.multi([256])
+  external ffi.Array<ffi.Char> error;
 }
 
 final class XIMU3_UsbConnectionInfo extends ffi.Struct {

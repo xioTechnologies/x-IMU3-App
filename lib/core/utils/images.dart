@@ -5,6 +5,7 @@ class Images {
   static const String battery75 = "assets/images/battery_75.svg";
   static const String batteryCharging = "assets/images/battery_charging.svg";
   static const String batteryChargingComplete = "assets/images/battery_charging_complete.svg";
+  static const String batteryChargingOnHold = "assets/images/battery_charging_on_hold.svg";
   static const String batteryUnavailable = "assets/images/battery_unavailable.svg";
   static const String bin = "assets/images/bin.svg";
   static const String json = "assets/images/json.svg";
