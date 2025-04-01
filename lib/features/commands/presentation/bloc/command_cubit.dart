@@ -29,10 +29,7 @@ class CommandCubit extends Cubit<CommandState> {
 
     final responses = await sendCommandUseCase.call(
       SendCommandsUseCaseParams(
-        commands: [CommandMessage(
-          key: key,
-          value: value,
-        )],
+        commands: [CommandMessage(key,value)],
         connection: connection,
       ),
     );

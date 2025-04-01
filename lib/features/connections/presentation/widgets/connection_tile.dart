@@ -120,7 +120,7 @@ class ConnectionTile extends StatelessWidget {
                             stream: connection.rssiStatusStream,
                             builder: (context, snapshot) {
                               return SvgPicture.asset(
-                                ConnectionUtils.wifiIcon(snapshot.data, connection),
+                                ConnectionUtils.rssiIcon(snapshot.data, connection),
                                 width: 22,
                               );
                             },
