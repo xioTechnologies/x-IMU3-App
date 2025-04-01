@@ -18,8 +18,6 @@ class CommandsAPI extends API {
 
   CommandsAPI._internal();
 
-  NativeLibrary get api => API.api;
-
   static Future<List<CommandMessage>> sendCommandsAsync(List<CommandMessage> commands, Pointer<XIMU3_Connection> connection) async {
     List<CommandMessage> responses = [];
 
@@ -31,7 +29,7 @@ class CommandsAPI extends API {
       }
 
       ffi.Pointer<ffi.Pointer<Utf8>> pointer = FFIHelpers.convertListToPointerPointer([command.toJson()]);
-      _instance.api.XIMU3_connection_send_commands_async(connection, pointer.cast(), 1, 2, 500, NativeCallable<
+      API.api.XIMU3_connection_send_commands_async(connection, pointer.cast(), 1, 2, 500, NativeCallable<
           ffi.Void Function(XIMU3_CharArrays data,
               ffi.Pointer<ffi.Void> context)>.listener(callback)
           .nativeFunction,
@@ -53,7 +51,7 @@ class CommandsAPI extends API {
     for (int i = 0; i < charArrays.length; i++) {
       strings.add((charArrays.array + i).cast<Utf8>().toDartString());
     }
-     _instance.api.XIMU3_char_arrays_free(charArrays);
+    API.api.XIMU3_char_arrays_free(charArrays);
     return strings;
   }
 }

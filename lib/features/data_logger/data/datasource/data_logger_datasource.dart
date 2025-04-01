@@ -19,8 +19,6 @@ class DataLoggerAPI {
 
   DataLoggerAPI._internal();
 
-  static NativeLibrary get api => API.api;
-
   Pointer<XIMU3_DataLogger>? dataLoggerPointer;
 
   Future<bool> openSession(String sessionName, List<Connection> connections) async {
@@ -31,7 +29,7 @@ class DataLoggerAPI {
     final Pointer<Pointer<XIMU3_Connection>> connectionsPointer =
         FFIHelpers.convertConnectionsToPointer(connections);
 
-    dataLoggerPointer = api.XIMU3_data_logger_new(
+    dataLoggerPointer = API.api.XIMU3_data_logger_new(
         directoryPointer, sessionNamePointer, connectionsPointer, connections.length);
 
     calloc.free(directoryPointer);
@@ -39,9 +37,9 @@ class DataLoggerAPI {
     calloc.free(connectionsPointer);
 
     if (dataLoggerPointer != null) {
-      XIMU3_Result result = api.XIMU3_data_logger_get_result(dataLoggerPointer!);
+      XIMU3_Result result = API.api.XIMU3_data_logger_get_result(dataLoggerPointer!);
 
-      Pointer<Char> resultString = api.XIMU3_result_to_string(result);
+      Pointer<Char> resultString = API.api.XIMU3_result_to_string(result);
       print("Data logger result: ${resultString.cast<Utf8>().toDartString()}");
       return true;
     } else {
@@ -59,7 +57,7 @@ class DataLoggerAPI {
   Future<bool> stopSession(String sessionName) async {
     if (dataLoggerPointer != null) {
       await zipSession(sessionName);
-      api.XIMU3_data_logger_free(dataLoggerPointer!);
+      API.api.XIMU3_data_logger_free(dataLoggerPointer!);
       dataLoggerPointer = null;
       return true;
     } else {
