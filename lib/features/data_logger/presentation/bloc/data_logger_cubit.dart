@@ -47,6 +47,8 @@ class DataLoggerCubit extends Cubit<DataLoggerState> {
       ),
     );
 
+    if (isClosed) return;
+
     failOrSuccess.fold(
       (failure) {
         emit(CreateSessionErrorState(failure.message));
@@ -65,6 +67,8 @@ class DataLoggerCubit extends Cubit<DataLoggerState> {
     final failOrSuccess = await stopSessionUseCase.call(
       StopSessionUseCaseParams(sessionName: sessionName),
     );
+
+    if (isClosed) return;
 
     failOrSuccess.fold(
       (failure) {
@@ -86,6 +90,8 @@ class DataLoggerCubit extends Cubit<DataLoggerState> {
       DeleteSessionUseCaseParams(sessionName: name),
     );
 
+    if (isClosed) return;
+
     failOrSuccess.fold(
       (failure) {
         emit(DeleteSessionErrorState(failure.message));
@@ -100,6 +106,8 @@ class DataLoggerCubit extends Cubit<DataLoggerState> {
     emit(FetchingSessionsState());
 
     final failOrSuccess = await getSessionsUseCase.call();
+
+    if (isClosed) return;
 
     failOrSuccess.fold(
       (failure) {

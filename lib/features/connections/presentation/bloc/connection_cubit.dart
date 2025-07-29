@@ -79,6 +79,8 @@ class ConnectionCubit extends Cubit<ConnectionsState> {
     final failOrSuccess =
         await getAvailableConnectionsAsyncUseCase.call(networkAnnouncementPointer);
 
+    if (isClosed) return;
+
     failOrSuccess.fold(
       (failure) {
         emit(ConnectionsScanErrorState(failure.message));
@@ -201,6 +203,8 @@ class ConnectionCubit extends Cubit<ConnectionsState> {
       ),
     );
 
+    if (isClosed) return;
+
     failOrSuccess.fold(
       (failure) {
         emit(DisconnectErrorState(failure.message));
@@ -282,6 +286,8 @@ class ConnectionCubit extends Cubit<ConnectionsState> {
     await sendCommandsUseCase.call(
       SendCommandsUseCaseParams(commands: [CommandMessage(key, value)], connection: connection)
     );
+
+    if (isClosed) return;
 
     emit(ConnectionCommandSentState());
   }

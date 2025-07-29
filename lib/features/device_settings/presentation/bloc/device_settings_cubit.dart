@@ -29,6 +29,8 @@ class DeviceSettingsCubit extends Cubit<DeviceSettingsState> {
 
     await sendCommands((await XMLUtils.getDeviceSettingsKeys()).map((key) => CommandMessage(key, null)).toList(), connection);
 
+    if (isClosed) return;
+
     emit(DeviceSettingsLoadedState());
   }
 
