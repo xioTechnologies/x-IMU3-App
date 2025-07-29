@@ -30,7 +30,7 @@ class CommandRepositoryImpl extends CommandRepository {
 
     for (final command in params.commands) {
       CommandMessage? response = responses.firstWhereOrNull((response) => command.key == response.key);
-      if (response == null || response.getError() != null) {
+      if (response == null || response.error != null) {
         failedCommands.add(command);
       }
     }
@@ -38,11 +38,11 @@ class CommandRepositoryImpl extends CommandRepository {
     if (globalBuildContext.mounted) {
       if (failedCommands.isEmpty) {
         if (params.commands.length == 1) {
-          AppSnack.show(globalBuildContext, message: "Command ${params.commands[0].toJson()} confirmed");
+          AppSnack.show(globalBuildContext, message: "Command ${params.commands[0].json} confirmed");
         }
       }
       else if (failedCommands.length == 1) {
-        AppSnack.show(globalBuildContext, message: "Command ${failedCommands[0].toJson()} failed");
+        AppSnack.show(globalBuildContext, message: "Command ${failedCommands[0].json} failed");
       }
       else {
         AppSnack.show(globalBuildContext, message: "Failed to confirm one or more commands");

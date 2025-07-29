@@ -2,6 +2,7 @@ import 'package:ximu3_app/features/connections/data/model/battery_status.dart';
 import 'package:ximu3_app/features/connections/data/model/connection_info.dart';
 import 'package:ximu3_app/features/connections/data/model/rssi_status.dart';
 
+import '../../../core/api/base_api.dart';
 import '../../../core/api/ximu3_bindings.g.dart';
 import '../../../core/utils/images.dart';
 import '../data/model/connection.dart';
@@ -22,26 +23,31 @@ class ConnectionUtils {
       return Images.batteryUnavailable;
     }
 
-    if (batteryStatus.status == XIMU3_ChargingStatus.XIMU3_ChargingStatusCharging) {
-      return Images.batteryCharging;
-    }
+    switch (API.api.XIMU3_charging_status_from_float(batteryStatus.charging_status)) {
+      case XIMU3_ChargingStatus.XIMU3_ChargingStatusNotConnected:
+        if (batteryStatus.percentage <= 25) {
+          return Images.battery25;
+        }
+        if (batteryStatus.percentage <= 50) {
+          return Images.battery50;
+        }
+        if (batteryStatus.percentage <= 75) {
+          return Images.battery75;
+        }
+        return Images.battery100;
 
-    if (batteryStatus.status == XIMU3_ChargingStatus.XIMU3_ChargingStatusChargingComplete) {
-      return Images.batteryChargingComplete;
-    }
+      case XIMU3_ChargingStatus.XIMU3_ChargingStatusCharging:
+        return Images.batteryCharging;
 
-    if (batteryStatus.percentage <= 25) {
-      return Images.battery25;
-    } else if (batteryStatus.percentage <= 50) {
-      return Images.battery50;
-    } else if (batteryStatus.percentage <= 75) {
-      return Images.battery75;
-    } else {
-      return Images.battery100;
+      case XIMU3_ChargingStatus.XIMU3_ChargingStatusChargingComplete:
+        return Images.batteryChargingComplete;
+
+      case XIMU3_ChargingStatus.XIMU3_ChargingStatusChargingOnHold:
+        return Images.batteryChargingOnHold;
     }
   }
 
-  static String wifiIcon(RssiStatus? rssiStatus, Connection connection) {
+  static String rssiIcon(RssiStatus? rssiStatus, Connection connection) {
     if (connection.connectionInfo is TCPConnectionInfo && rssiStatus == null) {
       rssiStatus = (connection.connectionInfo as TCPConnectionInfo).rssiStatus;
     }
@@ -56,12 +62,13 @@ class ConnectionUtils {
 
     if (rssiStatus.percentage <= 25) {
       return Images.wifi25;
-    } else if (rssiStatus.percentage <= 50) {
-      return Images.wifi50;
-    } else if (rssiStatus.percentage <= 75) {
-      return Images.wifi75;
-    } else {
-      return Images.wifi100;
     }
+    if (rssiStatus.percentage <= 50) {
+      return Images.wifi50;
+    }
+    if (rssiStatus.percentage <= 75) {
+      return Images.wifi75;
+    }
+    return Images.wifi100;
   }
 }

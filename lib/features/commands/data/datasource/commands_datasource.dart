@@ -28,7 +28,7 @@ class CommandsAPI extends API {
         response.complete(_toListOfStringsAndFree(data));
       }
 
-      ffi.Pointer<ffi.Pointer<Utf8>> pointer = FFIHelpers.convertListToPointerPointer([command.toJson()]);
+      ffi.Pointer<ffi.Pointer<Utf8>> pointer = FFIHelpers.convertListToPointerPointer([command.json]);
       API.api.XIMU3_connection_send_commands_async(connection, pointer.cast(), 1, 2, 500, NativeCallable<
           ffi.Void Function(XIMU3_CharArrays data,
               ffi.Pointer<ffi.Void> context)>.listener(callback)
