@@ -5,6 +5,7 @@ import 'package:ximu3_app/features/connections/presentation/pages/connections_pa
 import 'package:ximu3_app/features/data_logger/presentation/pages/data_logger_name_page.dart';
 import 'package:ximu3_app/features/device_settings/presentation/pages/device_settings_page.dart';
 import 'package:ximu3_app/features/graphs/presentation/pages/graph_layout_page.dart';
+import 'package:collection/collection.dart';
 
 import '../../features/commands/presentation/pages/note_command_page.dart';
 import '../../features/connections/data/model/device.dart';
