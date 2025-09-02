@@ -14,9 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Specify Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_16.2.app 
-
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
