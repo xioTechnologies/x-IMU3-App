@@ -35,8 +35,7 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
       value: context.read<ConnectionCubit>(),
       child: BlocListener<ConnectionCubit, ConnectionsState>(
         listener: (context, state) {
-          loadingNotifier.value =
-              state is DisconnectingState || state is ConnectionCommandSendingState;
+          loadingNotifier.value = state is DisconnectingState || state is ConnectionCommandSendingState;
 
           if (state is DisconnectErrorState) {
             AppSnack.show(context, message: Strings.errorDisconnecting);
@@ -44,27 +43,13 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
         },
         child: Scaffold(
           backgroundColor: Palette.backgroundLight,
-          floatingActionButton: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              FloatingActionButton(
-                heroTag: null,
-                onPressed: () async {
-                  context.router.push(const ManualConnectionRoute());
-                },
-                backgroundColor: Palette.red,
-                child: const Icon(Icons.add, color: Palette.backgroundLight, size: 40),
-              ),
-              const SizedBox(height: 10),
-              FloatingActionButton(
-                heroTag: null,
-                onPressed: () async {
-                  context.router.push(const NewConnectionRoute());
-                },
-                backgroundColor: Palette.white,
-                child: const Icon(Icons.add, color: Palette.backgroundLight, size: 40),
-              ),
-            ],
+          floatingActionButton: FloatingActionButton(
+            heroTag: null,
+            onPressed: () async {
+              context.router.push(const NewConnectionRoute());
+            },
+            backgroundColor: Palette.white,
+            child: const Icon(Icons.add, color: Palette.backgroundLight, size: 40),
           ),
           body: MultiValueListenableBuilder(
             listenableA: loadingNotifier,
@@ -89,8 +74,7 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
                                       var connection = connections[index];
                                       return ConnectionTile(
                                         onDelete: () {
-                                          cubit.disconnectSingle(
-                                              context.read<DataLoggerCubit>(), connection, cubit);
+                                          cubit.disconnectSingle(context.read<DataLoggerCubit>(), connection, cubit);
                                         },
                                         connection: connection,
                                       );
@@ -105,18 +89,15 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
                           ),
                   ),
                   Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ValueListenableBuilder(
-                        valueListenable: context.read<TabCubit>().networkAnnouncementNotifier,
-                        builder: (context, nam, _) {
-                          return AppText(
-                            text: nam != null ? "${Utils.sessionDateFormat(DateTime.now())} \n ${NetworkAnnouncementMessage.fromPointer(nam).toString()}" : "",
-                            align: TextAlign.center,
-                            size: SizeFont.xS,
-                          );
-                        },
-                      ),
+                    child: ValueListenableBuilder(
+                      valueListenable: context.read<ConnectionCubit>().activeConnectionsNotifier,
+                      builder: (_, value, __) {
+                        return AppText(
+                          text: value.isEmpty ? "No Connections" : "",
+                          align: TextAlign.center,
+                          size: SizeFont.xS,
+                        );
+                      },
                     ),
                   ),
                   Center(child: AppLoader(show: loading)),

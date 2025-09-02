@@ -9,7 +9,6 @@ import 'package:collection/collection.dart';
 
 import '../../features/commands/presentation/pages/note_command_page.dart';
 import '../../features/connections/data/model/device.dart';
-import '../../features/connections/presentation/pages/manual_connection_page.dart';
 import '../../features/connections/presentation/pages/new_connection_page.dart';
 import '../../features/data_logger/presentation/pages/data_logger_page.dart';
 import '../../features/graphs/data/model/graph.dart';
@@ -31,6 +30,5 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: DataLoggerNameRoute.page),
     AutoRoute(page: GraphLayoutRoute.page),
     AutoRoute(page: NoteCommandRoute.page),
-    AutoRoute(page: ManualConnectionRoute.page),
   ];
 }
