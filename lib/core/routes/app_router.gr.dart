@@ -154,22 +154,6 @@ class GraphLayoutRouteArgs {
 }
 
 /// generated route for
-/// [ManualConnectionPage]
-class ManualConnectionRoute extends PageRouteInfo<void> {
-  const ManualConnectionRoute({List<PageRouteInfo>? children})
-      : super(ManualConnectionRoute.name, initialChildren: children);
-
-  static const String name = 'ManualConnectionRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const ManualConnectionPage();
-    },
-  );
-}
-
-/// generated route for
 /// [NewConnectionPage]
 class NewConnectionRoute extends PageRouteInfo<void> {
   const NewConnectionRoute({List<PageRouteInfo>? children})
